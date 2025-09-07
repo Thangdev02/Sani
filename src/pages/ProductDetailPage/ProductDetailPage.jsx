@@ -314,7 +314,7 @@ const ProductDetail = () => {
                         <h4 className="related-title">Sản phẩm liên quan</h4>
                         <div className="related-list">
                             {relatedProducts.map((item) => (
-                                <div className="related-item" key={item.id}>
+                                <div className="related-item -flex flex-wrap flex-column align-items-center  justify-content-center" key={item.id} style={{padding:'2% 8%'}}>
                                     <img src={item.image} alt={item.name} />
                                     <p>{item.name}</p>
                                     <span className="related-price">{item.price}₫</span>

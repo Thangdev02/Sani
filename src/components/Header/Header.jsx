@@ -46,7 +46,7 @@ const Header = () => {
     const [expanded, setExpanded] = useState(false)
 
     return (
-        <>
+        <div>
             {/* Top Bar */}
             <div className="top-bar">
                 <Container>
@@ -152,7 +152,7 @@ const Header = () => {
                     </Container>
                 </Navbar>
             </motion.div>
-        </>
+        </div>
     )
 }
 

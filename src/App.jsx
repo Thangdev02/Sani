@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer"
 import ProductDetail from "./pages/ProductDetailPage/ProductDetailPage"
 import NewsList from "./pages/NewsListPage/NewsListPage"
 import NewsDetail from "./pages/NewsDetailPage/NewsDetailPage"
+import IntroductionPage from "./pages/IntroductionPage/IntroductionPage"
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/san-pham" element={<ProductsPage />} />
           <Route path="/san-pham/:id" element={<ProductDetail />} />
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/gioi-thieu" element={<IntroductionPage />} />
           <Route path="/tin-tuc" element={<NewsList />} />
           <Route path="/tin-tuc/:id" element={<NewsDetail />} />
           <Route path="/lien-he" element={<ContactPage />} />

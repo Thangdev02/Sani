@@ -69,7 +69,7 @@ const ProductPage = () => {
   }, [activeCategory, sortBy, products])
 
   return (
-    <section className="products-page" style={{ padding: "4% 0" }}>
+    <section className="products-page" style={{ padding: "4% 0",fontFamily: "Monserrat" }}>
       <Container>
         {/* Header */}
         <Row className="mb-4 align-items-center">

@@ -25,7 +25,7 @@ const NewsDetail = () => {
   if (!post) return <p className="loading">Đang tải bài viết...</p>;
 
   return (
-    <Container className="news-detail my-5">
+    <Container className="news-detail my-5" style={{fontFamily: "Monserrat" }}>
       <Row>
         <Col md={8}>
           <motion.div
