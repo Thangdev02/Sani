@@ -1,25 +1,187 @@
 "use client"
-import { Container, Row, Col } from "react-bootstrap"
+import { useEffect, useState } from "react"
+import { Container, Row, Col, Button, Card, Badge, Dropdown } from "react-bootstrap"
 import { motion } from "framer-motion"
+import axios from "axios"
+import "./ProductPage.css"
+import { useNavigate } from "react-router-dom"
 
-const ProductsPage = () => {
+const sortOptions = [
+  { label: "Mới nhất", value: "newest" },
+  { label: "Cũ nhất", value: "oldest" },
+  { label: "Giá: Tăng dần", value: "priceAsc" },
+  { label: "Giá: Giảm dần", value: "priceDesc" },
+  { label: "Tên: A-Z", value: "az" },
+  { label: "Tên: Z-A", value: "za" },
+  { label: "Bán chạy nhất", value: "bestseller" },
+]
+
+const ProductPage = () => {
+  const [products, setProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [activeCategory, setActiveCategory] = useState("all")
+  const [sortBy, setSortBy] = useState("newest")
+  const navigate = useNavigate()
+
+  // gọi API
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/products")
+      .then((res) => {
+        setProducts(res.data)
+        setFilteredProducts(res.data)
+      })
+      .catch((err) => console.error(err))
+  }, [])
+
+  // Lọc theo category
+  useEffect(() => {
+    let temp = [...products]
+    if (activeCategory !== "all") {
+      temp = temp.filter((p) => p.category === activeCategory)
+    }
+
+    // Sắp xếp
+    switch (sortBy) {
+      case "priceAsc":
+        temp.sort((a, b) => a.price - b.price)
+        break
+      case "priceDesc":
+        temp.sort((a, b) => b.price - a.price)
+        break
+      case "az":
+        temp.sort((a, b) => a.name.localeCompare(b.name))
+        break
+      case "za":
+        temp.sort((a, b) => b.name.localeCompare(a.name))
+        break
+      case "oldest":
+        temp.sort((a, b) => a.id - b.id)
+        break
+      case "newest":
+        temp.sort((a, b) => b.id - a.id)
+        break
+      default:
+        break
+    }
+
+    setFilteredProducts(temp)
+  }, [activeCategory, sortBy, products])
+
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="section-padding"
-    >
+    <section className="products-page" style={{ padding: "4% 0" }}>
       <Container>
-        <Row>
+        {/* Header */}
+        <Row className="mb-4 align-items-center">
           <Col>
-            <h1 className="text-brown mb-4">Sản phẩm</h1>
-            <p>Trang sản phẩm đang được phát triển...</p>
+            <h2 className="section-title">Tất cả sản phẩm</h2>
+            <p className="section-subtitle">{filteredProducts.length} sản phẩm</p>
+          </Col>
+          <Col className="text-end">
+            <Dropdown onSelect={(val) => setSortBy(val || "newest")}>
+              <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                Sắp xếp theo: {sortOptions.find((s) => s.value === sortBy)?.label}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                {sortOptions.map((opt) => (
+                  <Dropdown.Item key={opt.value} eventKey={opt.value}>
+                    {opt.label}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
           </Col>
         </Row>
+
+        {/* Category filter */}
+        <Row className="justify-content-center mb-4">
+          <Col xs="auto">
+            <Button
+              variant={activeCategory === "all" ? "danger" : "outline-secondary"}
+              onClick={() => setActiveCategory("all")}
+              className="category-btn"
+            >
+              Tất cả
+            </Button>
+          </Col>
+          <Col xs="auto">
+            <Button
+              variant={activeCategory === "tieu" ? "danger" : "outline-secondary"}
+              onClick={() => setActiveCategory("tieu")}
+              className="category-btn"
+            >
+              Tiêu
+            </Button>
+          </Col>
+          <Col xs="auto">
+            <Button
+              variant={activeCategory === "que" ? "danger" : "outline-secondary"}
+              onClick={() => setActiveCategory("que")}
+              className="category-btn"
+            >
+              Quế
+            </Button>
+          </Col>
+          <Col xs="auto">
+            <Button
+              variant={activeCategory === "nghe" ? "danger" : "outline-secondary"}
+              onClick={() => setActiveCategory("nghe")}
+              className="category-btn"
+            >
+              Nghệ
+            </Button>
+          </Col>
+        </Row>
+
+        {/* Products grid */}
+        <Row>
+          {filteredProducts.map((product, index) => (
+            <Col lg={4} md={6} className="mb-4" key={product.id}>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card
+                  className="product-card h-100 shadow-sm"
+                  onClick={() => navigate(`/san-pham/${product.id}`)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {product.discount && (
+                    <Badge bg="danger" className="discount-badge">
+                      -{product.discount}%
+                    </Badge>
+                  )}
+
+                  <Card.Img
+                    variant="top"
+                    src={product.image}
+                    alt={product.name}
+                    className="p-3"
+                  />
+                  <Card.Body className="text-center">
+                    <Card.Title className="product-name">{product.name}</Card.Title>
+                    <Card.Text className="product-price">
+                      <span className="new-price">
+                        {product.price.toLocaleString()}₫
+                      </span>
+                      {product.oldPrice && (
+                        <span className="old-price ms-2">
+                          {product.oldPrice.toLocaleString()}₫
+                        </span>
+                      )}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </motion.div>
+            </Col>
+          ))}
+        </Row>
       </Container>
-    </motion.div>
+    </section>
   )
 }
 
-export default ProductsPage
+export default ProductPage

@@ -7,6 +7,9 @@ import ProductsPage from "./pages/ProductsPage/ProductPage"
 import AboutPage from "./pages/AboutPage/AboutPage"
 import ContactPage from "./pages/ContactPage/ContactPage"
 import Footer from "./components/Footer/Footer"
+import ProductDetail from "./pages/ProductDetailPage/ProductDetailPage"
+import NewsList from "./pages/NewsListPage/NewsListPage"
+import NewsDetail from "./pages/NewsDetailPage/NewsDetailPage"
 
 
 function App() {
@@ -16,9 +19,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/san-pham" element={<ProductsPage />} />
+          <Route path="/san-pham/:id" element={<ProductDetail />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/tin-tuc" element={<NewsList />} />
+          <Route path="/tin-tuc/:id" element={<NewsDetail />} />
+          <Route path="/lien-he" element={<ContactPage />} />
         </Routes>
         <Footer/>
       </div>

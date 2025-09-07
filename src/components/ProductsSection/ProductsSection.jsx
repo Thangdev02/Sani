@@ -117,10 +117,11 @@ const ProductsSection = () => {
                             src={InforImage}
                             alt="Pepper Grinder"
                             className="core-image"
-                            initial={{ opacity: 0, scale: 0.8 }}
+                            initial={{ opacity: 0, scale: 0.3 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8 }}
+                            transition={{ duration: 1.4 }}
                             viewport={{ once: true }}
+                            style={{marginBottom:'15%'}}
                         />
                     </Col>
 

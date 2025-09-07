@@ -4,12 +4,13 @@ import { useState } from "react"
 import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap"
 import { LinkContainer } from "react-router-bootstrap"
 import { motion } from "framer-motion"
-import { Bell, Search, Person } from "react-bootstrap-icons"   // 👈 import icon
+import { Bell, Search, Person } from "react-bootstrap-icons"
 import "./Header.css"
 
 const menuItems = [
     {
         title: "Trang chủ",
+        path: "/",
         id: "home-dropdown",
         children: [
             { label: "Kiểu hiển thị header 1", path: "/header1" },
@@ -20,6 +21,7 @@ const menuItems = [
     {
         title: "Sản phẩm",
         id: "product-dropdown",
+        path: "/san-pham",
         children: [
             { label: "Loại 1", path: "/products/type1" },
             { label: "Loại 2", path: "/products/type2" },
@@ -27,15 +29,17 @@ const menuItems = [
     },
     {
         title: "Giới thiệu",
+        path: "/gioi-thieu",
         id: "about-dropdown",
         children: [
             { label: "Về công ty", path: "/about/company" },
             { label: "Đội ngũ", path: "/about/team" },
         ],
     },
-    { title: "Tin tức - Bài viết", path: "/blog" },
+    { title: "Tin tức - Bài viết", path: "/tin-tuc" },
     { title: "Landing page", path: "/landing" },
     { title: "Hệ thống cửa hàng", path: "/stores" },
+    { title: "Liên hệ", path: "/lien-he" },
 ]
 
 const Header = () => {
@@ -105,7 +109,11 @@ const Header = () => {
                                     item.children ? (
                                         <NavDropdown
                                             key={item.id}
-                                            title={item.title}
+                                            title={
+                                                <LinkContainer to={item.path}>
+                                                    <span className="nav-item-custom">{item.title}</span>
+                                                </LinkContainer>
+                                            }
                                             id={item.id}
                                             className="nav-item-custom"
                                         >
@@ -132,9 +140,6 @@ const Header = () => {
                                 >
                                     <Search size={20} />
                                 </motion.button>
-
-
-
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}

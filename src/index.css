@@ -21,3 +21,215 @@
 body {
   font-family: "Monserrat", sans-serif;
 }
+.product-detail-page {
+  padding: 40px 0;
+}
+
+.product-image {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: contain;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.product-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.product-status {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.product-price {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.price-new {
+  color: #d70018;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.share-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.share-icons img {
+  width: 24px;
+  height: 24px;
+}
+
+.coupon-column {
+  padding-left: 30px;
+}
+
+.coupon-list {
+  position: sticky;
+  top: 20px;
+}
+
+/* ===== Coupon Ticket Style ===== */
+.coupon-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+  position: relative;
+}
+
+/* Vé khuyết hai bên */
+.coupon-item::before,
+.coupon-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 50%;
+}
+
+.coupon-item::before {
+  left: -10px;
+}
+
+.coupon-item::after {
+  right: -10px;
+}
+
+.coupon-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.coupon-icon {
+  width: 36%;
+  height: 36%;
+  flex-shrink: 0;
+  padding: 1%;
+  margin-right: 2%;
+}
+
+.coupon-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.coupon-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 8px 0;
+}
+
+.coupon-code {
+  font-size: 0.85rem;
+  color: #333;
+  margin: 0;
+}
+
+.coupon-expiry {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0;
+}
+
+.coupon-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.coupon-button {
+  background: #f35a1c;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.coupon-button:hover {
+  background: #d74a13;
+}
+
+.coupon-info {
+  font-size: 1rem;
+  color: #888;
+  cursor: pointer;
+}
+
+/* ===== Benefit Row ===== */
+.benefit-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cột */
+  gap: 20px 40px; /* khoảng cách giữa các item */
+  margin: 40px 0;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.benefit-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.tab-section {
+  margin-top: 30px;
+}
+
+.tab-header {
+  display: flex;
+  gap: 24px;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 16px;
+}
+
+.tab-header button {
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  padding-bottom: 8px;
+}
+
+.tab-header button.active {
+  color: #d70018;
+  border-bottom: 2px solid #d70018;
+}

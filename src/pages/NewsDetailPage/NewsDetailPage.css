@@ -1,0 +1,118 @@
+/* Trang chi tiết tin tức */
+.news-detail {
+    font-family: "Inter", sans-serif;
+    line-height: 1.7;
+    color: #333;
+  }
+  
+  /* Tiêu đề */
+  .detail-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  
+  /* Thông tin tác giả + ngày */
+  .news-meta {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+  }
+  .news-meta span {
+    font-weight: 600;
+    color: #222;
+  }
+  
+  /* Nội dung chi tiết */
+  .detail-section h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .detail-section p {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 12px;
+  }
+  .detail-section img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  /* Sidebar - Bài viết liên quan */
+  .related-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+  }
+  
+  .related-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    transition: background 0.2s ease;
+  }
+  .related-item:last-child {
+    border-bottom: none;
+  }
+  .related-item:hover {
+    background: #fafafa;
+    border-radius: 6px;
+  }
+  
+  .related-thumb {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  
+  .related-item strong {
+    font-size: 14px;
+    color: #222;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .related-item p {
+    font-size: 12px;
+    margin: 0;
+    color: #888;
+  }
+  .post-navigation {
+    font-size: 15px;
+    color: #444;
+  }
+  
+  .post-navigation .current-post {
+    font-style: italic;
+    color: #555;
+  }
+  
+  .post-navigation .nav-links .nav-link {
+    font-weight: 600;
+    color: #dc3545;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .post-navigation .nav-links .nav-link:hover {
+    color: #a71d2a;
+  }
+  
+  .related-section {
+    margin-top: 40px;
+  }
+  
+  .related-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #222;
+  }
+  

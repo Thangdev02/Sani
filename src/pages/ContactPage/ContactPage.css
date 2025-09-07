@@ -1,0 +1,27 @@
+.contact-info {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .contact-info li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .icon-circle {
+    width: 40px;
+    height: 40px;
+    background: #f6f6f6; /* màu đỏ thương hiệu */
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  

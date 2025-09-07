@@ -78,32 +78,7 @@
     padding-bottom: 50px;
   }
   
-  .swiper-button-prev-custom,
-  .swiper-button-next-custom {
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    background: #fff;
-    border: 1px solid #e85c0d;
-    color: #e85c0d;
-    font-size: 22px;
-    font-weight: bold;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-  }
   
-  .swiper-button-prev-custom:hover,
-  .swiper-button-next-custom:hover {
-    background: #e85c0d;
-    color: #fff;
-  }
   
   .swiper-button-prev-custom {
     left: -20px;

@@ -1,0 +1,199 @@
+.product-detail-page {
+    padding: 40px 0;
+  }
+  
+  .product-image {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: contain;
+    margin-bottom: 20px;
+  }
+  
+  .product-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .product-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 12px;
+  }
+  
+  .product-status {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+  
+  .product-price {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .price-new {
+    color: #d70018;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  /* ===== Benefit Row ===== */
+  .benefit-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 40px;
+    margin: 40px 0;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+  
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #333;
+  }
+  
+  .benefit-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+  
+  /* ===== Tabs ===== */
+  .tab-related-row {
+    margin-top: 30px;
+  }
+  
+  .tab-section {
+    margin-top: 10px;
+  }
+  
+  .tab-header {
+    display: flex;
+    gap: 24px;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 16px;
+  }
+  
+  .tab-header button {
+    background: none;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    padding-bottom: 8px;
+  }
+  
+  .tab-header button.active {
+    color: #d70018;
+    border-bottom: 2px solid #d70018;
+  }
+  
+  .tab-content {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+  }
+  
+  /* ===== Related Products ===== */
+  .related-products-column {
+    padding-left: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  
+  .related-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  
+  .related-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .related-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff;
+    text-align: center;
+    transition: 0.2s;
+  }
+  
+  .related-item img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 8px;
+  }
+  
+  .related-item p {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  
+  .related-price {
+    color: #d70018;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  
+  .related-item:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  }
+  .faq-section {
+    margin-top: 20px;
+  }
+  
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 12px 0;
+  }
+  
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    cursor: pointer;
+    color: #222;
+  }
+  
+  .faq-answer {
+    margin-top: 8px;
+    color: #444;
+    line-height: 1.6;
+  }
+  
+  .faq-icon {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .faq-more {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .faq-more button {
+    background-color: #e63946;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .faq-more button:hover {
+    background-color: #d62828;
+  }
+  
