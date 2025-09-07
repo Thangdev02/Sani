@@ -1,0 +1,95 @@
+.top-bar {
+    background-color: #740b12;
+    color: white;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+  
+  .contact-info span {
+    margin-right: 20px;
+  }
+  
+  .notification {
+    display: flex;
+    align-items: center;
+  }
+  
+  .main-navbar {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .brand-logo {
+    cursor: pointer;
+  }
+  
+  .nav-item-custom {
+    color: #333 !important;
+    font-weight: 500;
+    margin: 0 15px;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-item-custom:hover {
+    color: #8b4513 !important;
+  }
+  
+  .nav-item-custom::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #8b4513;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  .nav-item-custom:hover::after {
+    width: 100%;
+  }
+  
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .btn-icon {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  @media (max-width: 991px) {
+    .nav-item-custom {
+      margin: 5px 0;
+      text-align: center;
+    }
+  
+    .navbar-actions {
+      justify-content: center;
+      margin-top: 20px;
+    }
+  }
+  
+  /* Hiện dropdown khi hover */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* để menu không bị lệch */
+  }
+  
+  /* Làm cho tiêu đề dropdown không bị nhấp nháy khi hover */
+  .nav-item.dropdown .nav-link {
+    pointer-events: none;
+  }
+  .nav-item.dropdown:hover .nav-link {
+    pointer-events: auto;
+  }
+  

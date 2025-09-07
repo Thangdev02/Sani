@@ -1,0 +1,95 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Bột tỏi nguyên chất Vipep 600g - bột gia vị tiện lợi dễ thấm cho món ăn đậm đà, thơm ngon chuẩn vị",
+        "category": "tieu",
+        "price": 151000,
+        "oldPrice": 167000,
+        "discount": 10,
+        "image": "/images/products/product1.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Combo Muối Hồng Himalaya Xay Nhuyễn 1.1kg + Muối Hồng Nguyên Hạt Cối Xay Vipep 120gr",
+        "category": "que",
+        "price": 99000,
+        "image": "/images/products/product2.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Combo tẩm ướp nấu ăn tỏi bột, sả bột, hành bột, ngủ vị hương thơm ngon tự nhiên - Gia vị Vipep",
+        "category": "nghe",
+        "price": 116000,
+        "image": "/images/products/product3.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Gói Gia Vị Xốt Phở Trộn 82g",
+        "category": "huuco",
+        "price": 129000,
+        "image": "/images/products/product4.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Lá Kinh Giới Vipep Hũ Nhựa 6g - Gia vị Vipep",
+        "category": "huuco",
+        "price": 27000,
+        "oldPrice": 30000,
+        "discount": 10,
+        "image": "/images/products/product5.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Muối Trắng Hymalaya Vipep Nguyên Hạt Hũ Nhựa 500g - Gia vị Vipep",
+        "category": "que",
+        "price": 47000,
+        "oldPrice": 53000,
+        "discount": 11,
+        "image": "/images/products/product6.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Set 2 Gói Gia Vị Nấu Lẩu Thái Tự Nhiên Vipep 85g",
+        "category": "huuco",
+        "price": 92000,
+        "discount": 11,
+        "image": "/images/products/product6.jpg"
+      }
+    ],
+    "posts": [
+        {
+          "id": 1,
+          "title": "Hạt tiêu - Loại gia vị bé nhỏ mà bùng nổ hương vị ấm nồng",
+          "excerpt": "Hạt tiêu tuy nhỏ bé nhưng lại mang trong mình vị cay nồng ấm, cùng với mùi hương rất đặc trưng...",
+          "date": "15 Tháng 11, 2024",
+          "image": "/images/blog1.jpg",
+          "link": "/blog/hat-tieu-bung-no"
+        },
+        {
+          "id": 2,
+          "title": "Khám phá hạt tiêu - Vua của các loại gia vị",
+          "excerpt": "Đối với một nền ẩm thực chú trọng về sự hài hòa hương vị và tính cân bằng, hạt tiêu chính là lựa chọn tuyệt vời...",
+          "date": "15 Tháng 11, 2024",
+          "image": "/images/blog2.jpg",
+          "link": "/blog/kham-pha-hat-tieu"
+        },
+        {
+          "id": 3,
+          "title": "Hạt tiêu: Thứ gia vị, vị thuốc ấm nóng thơm nồng",
+          "excerpt": "Trong cuộc sống hằng ngày, hạt tiêu đã trở nên quá quen thuộc với tất cả chúng ta...",
+          "date": "15 Tháng 11, 2024",
+          "image": "/images/blog3.jpg",
+          "link": "/blog/hat-tieu-thuoc"
+        },
+        {
+            "id": 4,
+            "title": "Hạt tiêu: Thứ gia vị, vị thuốc ấm nóng thơm nồng",
+            "excerpt": "Trong cuộc sống hằng ngày, hạt tiêu đã trở nên quá quen thuộc với tất cả chúng ta...",
+            "date": "15 Tháng 11, 2024",
+            "image": "/images/blog4.jpg",
+            "link": "/blog/hat-tieu-thuoc"
+          }
+      ]
+  }
+  

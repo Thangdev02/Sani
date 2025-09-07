@@ -1,0 +1,115 @@
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  
+  .divider {
+    position: relative;
+    width: 180px;
+    height: 2px;
+    background: #e85c0d;
+    margin-top: 12px;
+    margin-bottom: 20px;
+  }
+  .divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    background: #e85c0d;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: transform 0.6s ease;
+  }
+  .divider:hover::before {
+    transform: translate(-50%, -50%) rotate(405deg);
+  }
+  
+  .news-card {
+    border: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+  }
+  .news-card:hover {
+    transform: translateY(-6px);
+  }
+  
+  .news-image {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .news-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .news-desc {
+    font-size: 0.95rem;
+    color: #555;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .news-footer {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  .news-more {
+    font-weight: 600;
+    color: #e85c0d;
+    text-decoration: none;
+  }
+  .news-more:hover {
+    text-decoration: underline;
+  }
+  .news-swiper {
+    position: relative;
+    padding-bottom: 50px;
+  }
+  
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: 1px solid #e85c0d;
+    color: #e85c0d;
+    font-size: 22px;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+  
+  .swiper-button-prev-custom:hover,
+  .swiper-button-next-custom:hover {
+    background: #e85c0d;
+    color: #fff;
+  }
+  
+  .swiper-button-prev-custom {
+    left: -20px;
+  }
+  
+  .swiper-button-next-custom {
+    right: -20px;
+  }
+  

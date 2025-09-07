@@ -1,0 +1,23 @@
+.products-intro-section h3 {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .products-intro-section p {
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .products-intro-section .btn-danger {
+    background-color: #e74c3c;
+    border: none;
+    padding: 10px 25px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+  }
+  
+  .products-intro-section .btn-danger:hover {
+    background-color: #c0392b;
+  }
+  

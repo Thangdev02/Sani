@@ -1,0 +1,100 @@
+/* Section */
+.newsletter-section {
+    background: #f9f9f9;
+    padding: 8% 4%;
+  }
+  
+  /* Container */
+  .newsletter-container {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Subtitle */
+  .newsletter-subtitle {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 8px;
+  }
+  
+  /* Title */
+  .newsletter-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 16px;
+  }
+  
+  /* Line with diamond */
+  .newsletter-line {
+    position: relative;
+    width: 80px;
+    height: 2px;
+    background: #ea4c2a;
+    margin: 0 auto 32px auto;
+  }
+  
+  .newsletter-line span {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background: #e85c0d;
+  }
+  
+  /* Form */
+  .newsletter-form {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Input wrapper */
+  .newsletter-input-wrapper {
+    position: relative;
+    flex: 1;
+  }
+  
+  .newsletter-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .newsletter-input {
+    width: 100%;
+    padding: 14px 16px 14px 40px; /* chừa chỗ icon */
+    border: 1px solid #ddd;
+    border-radius: 6px 0 0 6px;
+    font-size: 15px;
+    outline: none;
+  }
+  
+  .newsletter-input:focus {
+    border-color: #e85c0d;
+    box-shadow: inset 0 0 0 1px #e85c0d;
+  }
+  
+  /* Button */
+  .newsletter-button {
+    background: #ea4c2a;
+    color: #fff;
+    padding: 14px 28px;
+    border: none;
+    font-weight: 600;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .newsletter-button:hover {
+    background: #d94e05;
+  }
+  

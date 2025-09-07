@@ -1,0 +1,102 @@
+.core-values-section {
+    background-color: #651f24;
+    color: #fff;
+    padding: 80px 0;
+  }
+  
+  .section-subtitle {
+    color: #f1c0b9;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  
+  .section-title1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+  
+  .section-divider {
+    width: 50px;
+    height: 2px;
+    background: #e85c4a;
+    margin: 15px auto 40px;
+  }
+  
+  .value-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+  }
+  
+  .value-item:hover {
+    transform: rotateY(180deg);
+  }
+  
+  .value-item h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .value-item p {
+    font-size: 14px;
+    color: #ddd;
+    margin: 0;
+  }
+  
+  .icon-circle,
+  .badge-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .icon-img,
+  .badge-icon {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+  }
+  
+  .core-image {
+    max-width: 320px;
+    max-height: 900px;
+  }
+  
+  .value-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14%;
+  }
+  
+  /* Left values → text bên trái, icon bên phải */
+  .value-item.left {
+    justify-content: flex-end;
+    text-align: right;
+  }
+  
+  .value-item.left .value-text {
+    margin-right: 15px;
+  }
+  
+  /* Right values → icon bên trái, text bên phải (giữ nguyên) */
+  .value-item.right {
+    justify-content: flex-start;
+    text-align: left;
+  }
+  
+  .value-item.right .badge-circle {
+    margin-right: 15px;
+  }
+  
