@@ -9,21 +9,22 @@ export default function handler(req, res) {
     }
 
     const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    const { category, id } = req.query;
+    const { id, category } = req.query;
 
     let data = jsonData.products || [];
 
     if (category) {
       data = data.filter((p) => p.category === category);
     }
+
     if (id) {
       const found = data.find((p) => p.id.toString() === id.toString());
       data = found ? [found] : [];
     }
 
-    res.status(200).json(data);
-  } catch (e) {
-    console.error("API Error:", e);
-    res.status(500).json({ error: "Server error", data: [] });
+    return res.status(200).json(data);
+  } catch (error) {
+    console.error("API error:", error);
+    return res.status(500).json({ error: "Server error", data: [] });
   }
 }

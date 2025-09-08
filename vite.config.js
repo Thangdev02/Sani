@@ -1,33 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+// vite.config.js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
-    }
-  },
-  build: {
-    outDir: 'dist',
-    emptyOutDir: true,
-    rollupOptions: {
-      external: ['fs', 'path'],  // Không bundle Node modules vào frontend
-      input: 'index.html',       // Chỉ build từ index.html, bỏ qua api/
-      output: {
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]'
-      }
-    }
-  },
   server: {
-    fs: {
-      allow: ['..']  // Nếu cần, nhưng cẩn thận
+    proxy: {
+      "/api": "http://localhost:3000", // JSON Server khi dev
     },
-    watch: {
-      ignored: ['**/api/**']  // Không watch API files
-    }
-  }
-})
+  },
+});
