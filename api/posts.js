@@ -1,11 +1,9 @@
-import fs from "fs";
-import path from "path";
+// api/posts.js
+import { posts } from '../data';
 
 export default function handler(req, res) {
   try {
-    const filePath = path.join(process.cwd(), "db.json");
-    const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    res.status(200).json(data.posts);
+    res.status(200).json(posts);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
