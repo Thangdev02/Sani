@@ -1,23 +1,21 @@
-import fs from "fs"
-import path from "path"
+import fs from "fs";
+import path from "path";
 
 export default function handler(req, res) {
-  const filePath = path.join(process.cwd(), "db.json")
-  const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"))
+  const filePath = path.join(process.cwd(), "db.json");
+  const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
-  const { category, id } = req.query
+  const { category, id } = req.query;
 
-  let data = jsonData.products
+  let data = jsonData.products;
 
-  // lọc theo category
   if (category) {
-    data = data.filter((p) => p.category === category)
+    data = data.filter((p) => p.category === category);
   }
 
-  // lấy theo id
   if (id) {
-    data = data.find((p) => p.id.toString() === id.toString())
+    data = data.find((p) => p.id.toString() === id.toString());
   }
 
-  res.status(200).json(data)
+  res.status(200).json(data);
 }
