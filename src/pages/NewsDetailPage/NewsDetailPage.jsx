@@ -13,11 +13,11 @@ const NewsDetail = () => {
   const [related, setRelated] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/posts/${id}`)
+    axios.get(`/api/posts/${id}`)
       .then(res => setPost(res.data))
       .catch(err => console.error(err));
 
-    axios.get("http://localhost:3000/posts")
+    axios.get("/api/posts")
       .then(res => setRelated(res.data.filter(p => p.id !== parseInt(id)).slice(0, 3)))
       .catch(err => console.error(err));
   }, [id]);

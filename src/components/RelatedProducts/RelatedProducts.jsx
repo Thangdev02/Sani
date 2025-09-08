@@ -14,7 +14,7 @@ const RelatedProducts = ({ category }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/products?category=${category}`)
+      .get(`/api/products?category=${category}`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err))
   }, [category])

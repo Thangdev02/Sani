@@ -11,7 +11,7 @@ const NewsList = () => {
   const [activeKey, setActiveKey] = useState("0");
 
   useEffect(() => {
-    axios.get("http://localhost:3000/posts")
+    axios.get("/api/posts")
       .then(res => setPosts(res.data))
       .catch(err => console.error(err));
   }, []);

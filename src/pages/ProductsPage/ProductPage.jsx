@@ -26,7 +26,7 @@ const ProductPage = () => {
   // gọi API
   useEffect(() => {
     axios
-      .get("http://localhost:3000/products")
+      .get("/api/products")
       .then((res) => {
         setProducts(res.data)
         setFilteredProducts(res.data)

@@ -12,7 +12,7 @@ const BrandProductsSection = () => {
 
   useEffect(() => {
     // ✅ Call API (fake JSON server hoặc API backend bạn đã có)
-    fetch("http://localhost:3000/products")
+    fetch("/api/products")
       .then(res => res.json())
       .then(data => setProducts(data))
       .catch(err => console.error("Error fetching products:", err))

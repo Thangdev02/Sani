@@ -52,12 +52,12 @@ const ProductDetail = () => {
       ];
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/products/${id}`)
+            .get(`/api/products/${id}`)
             .then((res) => {
                 setProduct(res.data)
                 // fetch sản phẩm liên quan theo category
                 axios
-                    .get(`http://localhost:3000/products?category=${res.data.category}`)
+                    .get(`/api/products?category=${res.data.category}`)
                     .then((r) => setRelatedProducts(r.data.filter((p) => p.id !== res.data.id)))
             })
             .catch((err) => console.error(err))
