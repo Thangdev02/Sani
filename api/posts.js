@@ -7,17 +7,28 @@ export default function handler(req, res) {
     if (!fs.existsSync(filePath)) {
       return res.status(500).json({ error: "db.json not found" });
     }
-    const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    const { id } = req.query;
 
-    let data = jsonData.posts || []; // Fallback nếu posts không tồn tại
+    const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    const { id, _sort, _order } = req.query;
+
+    let data = jsonData.posts || [];
 
     if (id) {
       const found = data.find((p) => p.id.toString() === id.toString());
-      data = found ? [found] : []; // Trả array với 1 item hoặc rỗng
+      data = found ? [found] : [];
     }
 
-    res.status(200).json(data); // Luôn trả array
+    // hỗ trợ sort/order giống json-server
+    if (_sort) {
+      data = data.sort((a, b) => {
+        if (_order === "desc") {
+          return new Date(b[_sort]) - new Date(a[_sort]);
+        }
+        return new Date(a[_sort]) - new Date(b[_sort]);
+      });
+    }
+
+    res.status(200).json(data);
   } catch (e) {
     console.error("API Error:", e);
     res.status(500).json({ error: "Server error", data: [] });

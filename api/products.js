@@ -7,20 +7,21 @@ export default function handler(req, res) {
     if (!fs.existsSync(filePath)) {
       return res.status(500).json({ error: "db.json not found" });
     }
+
     const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
     const { category, id } = req.query;
 
-    let data = jsonData.products || []; // Fallback nếu products không tồn tại
+    let data = jsonData.products || [];
 
     if (category) {
       data = data.filter((p) => p.category === category);
     }
     if (id) {
       const found = data.find((p) => p.id.toString() === id.toString());
-      data = found ? [found] : []; // Trả array với 1 item hoặc rỗng
+      data = found ? [found] : [];
     }
 
-    res.status(200).json(data); // Luôn trả array
+    res.status(200).json(data);
   } catch (e) {
     console.error("API Error:", e);
     res.status(500).json({ error: "Server error", data: [] });
