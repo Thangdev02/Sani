@@ -19,7 +19,7 @@ const ProductsMainSection = () => {
   // gọi API từ json-server
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/products?category=${activeCategory}`)
+      .get(`/api/products?category=${activeCategory}`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err))
   }, [activeCategory])

@@ -13,7 +13,7 @@ const NewsSection = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/posts?_sort=date&_order=desc")
+      .get("/api/posts?_sort=date&_order=desc")
       .then((res) => setPosts(res.data))
       .catch((err) => console.error(err))
   }, [])
