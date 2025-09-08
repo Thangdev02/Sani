@@ -4,6 +4,7 @@ import path from "path";
 export default function handler(req, res) {
   try {
     const filePath = path.join(process.cwd(), "db.json");
+
     if (!fs.existsSync(filePath)) {
       return res.status(500).json({ error: "db.json not found" });
     }

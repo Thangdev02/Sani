@@ -4,6 +4,7 @@ import path from "path";
 export default function handler(req, res) {
   try {
     const filePath = path.join(process.cwd(), "db.json");
+
     if (!fs.existsSync(filePath)) {
       return res.status(500).json({ error: "db.json not found" });
     }
@@ -18,19 +19,22 @@ export default function handler(req, res) {
       data = found ? [found] : [];
     }
 
-    // hỗ trợ sort/order giống json-server
+    // hỗ trợ sort/order
     if (_sort) {
       data = data.sort((a, b) => {
+        const aVal = a[_sort];
+        const bVal = b[_sort];
+
         if (_order === "desc") {
-          return new Date(b[_sort]) - new Date(a[_sort]);
+          return new Date(bVal) - new Date(aVal);
         }
-        return new Date(a[_sort]) - new Date(b[_sort]);
+        return new Date(aVal) - new Date(bVal);
       });
     }
 
-    res.status(200).json(data);
+    return res.status(200).json(data);
   } catch (e) {
     console.error("API Error:", e);
-    res.status(500).json({ error: "Server error", data: [] });
+    return res.status(500).json({ error: "Server error", data: [] });
   }
 }
