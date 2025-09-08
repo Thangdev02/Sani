@@ -5,7 +5,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: './',       // <- quan trọng để relative paths
+  base: '/',  // đổi từ './' -> '/' để Vercel hiểu đúng
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') }
   },
@@ -14,3 +14,4 @@ export default defineConfig({
     emptyOutDir: true
   }
 })
+
