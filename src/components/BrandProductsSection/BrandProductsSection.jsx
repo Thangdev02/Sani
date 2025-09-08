@@ -1,5 +1,4 @@
 "use client"
-import { useEffect, useState } from "react"
 import { Container } from "react-bootstrap"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
@@ -7,16 +6,11 @@ import "swiper/css"
 import "swiper/css/navigation"
 import "./BrandProductsSection.css"
 
-const BrandProductsSection = () => {
-  const [products, setProducts] = useState([])
+// ✅ Import trực tiếp data từ data.js
+import { products as allProducts } from "../../../api/data"
 
-  useEffect(() => {
-    // ✅ Call API (fake JSON server hoặc API backend bạn đã có)
-    fetch("/api/products")
-      .then(res => res.json())
-      .then(data => setProducts(data))
-      .catch(err => console.error("Error fetching products:", err))
-  }, [])
+const BrandProductsSection = () => {
+  const products = allProducts // Không cần useState/useEffect nữa
 
   return (
     <section className="brand-products-section py-5">

@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react"
 import { Container, Row, Col, Button, Card, Badge, Dropdown } from "react-bootstrap"
 import { motion } from "framer-motion"
-import axios from "axios"
-import "./ProductPage.css"
 import { useNavigate } from "react-router-dom"
+import "./ProductPage.css"
+import { products as allProducts } from "../../../api/data" // import trực tiếp
 
 const sortOptions = [
   { label: "Mới nhất", value: "newest" },
@@ -23,25 +23,19 @@ const ProductPage = () => {
   const [sortBy, setSortBy] = useState("newest")
   const navigate = useNavigate()
 
-  // gọi API
+  // Load dữ liệu từ data.js
   useEffect(() => {
-    axios
-      .get("/api/products")
-      .then((res) => {
-        setProducts(res.data)
-        setFilteredProducts(res.data)
-      })
-      .catch((err) => console.error(err))
+    setProducts(allProducts)
+    setFilteredProducts(allProducts)
   }, [])
 
-  // Lọc theo category
+  // Lọc và sắp xếp
   useEffect(() => {
     let temp = [...products]
     if (activeCategory !== "all") {
       temp = temp.filter((p) => p.category === activeCategory)
     }
 
-    // Sắp xếp
     switch (sortBy) {
       case "priceAsc":
         temp.sort((a, b) => a.price - b.price)
@@ -69,7 +63,7 @@ const ProductPage = () => {
   }, [activeCategory, sortBy, products])
 
   return (
-    <section className="products-page" style={{ padding: "4% 0",fontFamily: "Monserrat" }}>
+    <section className="products-page" style={{ padding: "4% 0", fontFamily: "Monserrat" }}>
       <Container>
         {/* Header */}
         <Row className="mb-4 align-items-center">
@@ -82,7 +76,6 @@ const ProductPage = () => {
               <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
                 Sắp xếp theo: {sortOptions.find((s) => s.value === sortBy)?.label}
               </Dropdown.Toggle>
-
               <Dropdown.Menu>
                 {sortOptions.map((opt) => (
                   <Dropdown.Item key={opt.value} eventKey={opt.value}>
@@ -96,42 +89,17 @@ const ProductPage = () => {
 
         {/* Category filter */}
         <Row className="justify-content-center mb-4">
-          <Col xs="auto">
-            <Button
-              variant={activeCategory === "all" ? "danger" : "outline-secondary"}
-              onClick={() => setActiveCategory("all")}
-              className="category-btn"
-            >
-              Tất cả
-            </Button>
-          </Col>
-          <Col xs="auto">
-            <Button
-              variant={activeCategory === "tieu" ? "danger" : "outline-secondary"}
-              onClick={() => setActiveCategory("tieu")}
-              className="category-btn"
-            >
-              Tiêu
-            </Button>
-          </Col>
-          <Col xs="auto">
-            <Button
-              variant={activeCategory === "que" ? "danger" : "outline-secondary"}
-              onClick={() => setActiveCategory("que")}
-              className="category-btn"
-            >
-              Quế
-            </Button>
-          </Col>
-          <Col xs="auto">
-            <Button
-              variant={activeCategory === "nghe" ? "danger" : "outline-secondary"}
-              onClick={() => setActiveCategory("nghe")}
-              className="category-btn"
-            >
-              Nghệ
-            </Button>
-          </Col>
+          {["all","tieu","que","nghe"].map((cat) => (
+            <Col xs="auto" key={cat}>
+              <Button
+                variant={activeCategory === cat ? "danger" : "outline-secondary"}
+                onClick={() => setActiveCategory(cat)}
+                className="category-btn"
+              >
+                {cat === "all" ? "Tất cả" : cat.charAt(0).toUpperCase() + cat.slice(1)}
+              </Button>
+            </Col>
+          ))}
         </Row>
 
         {/* Products grid */}
@@ -154,7 +122,6 @@ const ProductPage = () => {
                       -{product.discount}%
                     </Badge>
                   )}
-
                   <Card.Img
                     variant="top"
                     src={product.image}
@@ -164,13 +131,9 @@ const ProductPage = () => {
                   <Card.Body className="text-center">
                     <Card.Title className="product-name">{product.name}</Card.Title>
                     <Card.Text className="product-price">
-                      <span className="new-price">
-                        {product.price.toLocaleString()}₫
-                      </span>
+                      <span className="new-price">{product.price.toLocaleString()}₫</span>
                       {product.oldPrice && (
-                        <span className="old-price ms-2">
-                          {product.oldPrice.toLocaleString()}₫
-                        </span>
+                        <span className="old-price ms-2">{product.oldPrice.toLocaleString()}₫</span>
                       )}
                     </Card.Text>
                   </Card.Body>

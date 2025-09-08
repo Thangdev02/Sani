@@ -1,9 +1,11 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Container, Row, Col, Button, Card, Badge } from "react-bootstrap"
 import { motion } from "framer-motion"
-import axios from "axios"
 import "./ProductsMainSection.css"
+
+// import trực tiếp data
+import { products as allProducts } from "../../../api/data" // tùy đường dẫn file data.js
 
 const categories = [
   { label: "Tiêu", value: "tieu" },
@@ -13,16 +15,10 @@ const categories = [
 ]
 
 const ProductsMainSection = () => {
-  const [products, setProducts] = useState([])
   const [activeCategory, setActiveCategory] = useState("tieu")
 
-  // gọi API từ json-server
-  useEffect(() => {
-    axios
-      .get(`/api/products?category=${activeCategory}`)
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.error(err))
-  }, [activeCategory])
+  // lọc sản phẩm theo category
+  const filteredProducts = allProducts.filter(p => p.category === activeCategory)
 
   return (
     <section className="products-section" style={{ padding: "4% 0" }}>
@@ -53,7 +49,7 @@ const ProductsMainSection = () => {
 
         {/* Products grid */}
         <Row>
-          {products.map((product, index) => (
+          {filteredProducts.map((product, index) => (
             <Col lg={4} md={6} className="mb-4" key={product.id}>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}

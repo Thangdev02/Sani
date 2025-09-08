@@ -4,19 +4,20 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import "./RelatedProducts.css"
+
+// Import trực tiếp data
+import { products as allProducts } from "../../../api/data"
 
 const RelatedProducts = ({ category }) => {
   const [products, setProducts] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios
-      .get(`/api/products?category=${category}`)
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.error(err))
+    // Lọc trực tiếp từ data.js
+    const filtered = allProducts.filter(p => p.category === category)
+    setProducts(filtered)
   }, [category])
 
   const handleClick = (id) => {

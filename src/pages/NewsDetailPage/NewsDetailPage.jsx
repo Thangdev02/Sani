@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import axios from "axios";
 import { motion } from "framer-motion";
 import "./NewsDetailPage.css";
 import RelatedPosts from "../../components/RelatedPosts/RelatedPosts";
 import RelatedDetailPosts from "../../components/RelatedDetailPosts/RelatedDetailPosts";
+import { posts as allPosts } from "../../../api/data"; // <-- import trực tiếp
 
 const NewsDetail = () => {
   const { id } = useParams();
@@ -13,19 +13,20 @@ const NewsDetail = () => {
   const [related, setRelated] = useState([]);
 
   useEffect(() => {
-    axios.get(`/api/posts/${id}`)
-      .then(res => setPost(res.data))
-      .catch(err => console.error(err));
-
-    axios.get("/api/posts")
-      .then(res => setRelated(res.data.filter(p => p.id !== parseInt(id)).slice(0, 3)))
-      .catch(err => console.error(err));
+    const currentPost = allPosts.find(p => p.id === id);
+    setPost(currentPost);
+  
+    const relatedPosts = allPosts
+      .filter(p => p.id !== id)
+      .slice(0, 3);
+    setRelated(relatedPosts);
   }, [id]);
+  
 
   if (!post) return <p className="loading">Đang tải bài viết...</p>;
 
   return (
-    <Container className="news-detail my-5" style={{fontFamily: "Monserrat" }}>
+    <Container className="news-detail my-5" style={{ fontFamily: "Monserrat" }}>
       <Row>
         <Col md={8}>
           <motion.div
@@ -42,7 +43,7 @@ const NewsDetail = () => {
               src={post.image}
               alt={post.title}
               className="img-fluid rounded mb-4 detail-image"
-               style={{width:'100%'}}
+              style={{ width: "100%" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -84,8 +85,8 @@ const NewsDetail = () => {
           </motion.div>
         </Col>
         <div className="related-section mt-5">
-  <RelatedDetailPosts posts={related} />
-</div>
+          <RelatedDetailPosts posts={related} />
+        </div>
       </Row>
     </Container>
   );

@@ -1,22 +1,17 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
-import axios from "axios"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "./NewsSection.css"
 
-const NewsSection = () => {
-  const [posts, setPosts] = useState([])
+// Import trực tiếp posts từ file data.js
+import { posts as allPosts } from "../../../api/data"  // nhớ điều chỉnh đường dẫn chính xác
 
-  useEffect(() => {
-    axios
-      .get("/api/posts?_sort=date&_order=desc")
-      .then((res) => setPosts(res.data))
-      .catch((err) => console.error(err))
-  }, [])
+const NewsSection = () => {
+  const [posts] = useState(allPosts) // không cần useEffect nữa
 
   return (
     <section className="news-section py-5">

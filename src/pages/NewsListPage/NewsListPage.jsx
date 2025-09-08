@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Accordion } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { Plus, Dash } from "react-bootstrap-icons";
 import "./NewsListPage.css";
 import RelatedPosts from "../../components/RelatedPosts/RelatedPosts";
+import { posts as allPosts  } from "../../../api/data"; // import trực tiếp từ data.js
 
 const NewsList = () => {
   const [posts, setPosts] = useState([]);
-  const [activeKey, setActiveKey] = useState("0");
 
   useEffect(() => {
-    axios.get("/api/posts")
-      .then(res => setPosts(res.data))
-      .catch(err => console.error(err));
+    setPosts(allPosts); // lấy dữ liệu từ data.js
   }, []);
 
   // Sắp xếp bài mới nhất
@@ -30,27 +26,23 @@ const NewsList = () => {
           <Row>
             {posts.map(post => (
               <Col md={4} key={post.id} className="mb-4">
-                 <Link style={{textDecoration:"none"}}
-                      to={`/tin-tuc/${post.id}`}
-                    >
-                <Card className="news-card h-100 shadow-sm">
-                  <Card.Img
-                    variant="top"
-                    src={post.image || "/images/no-image.png"}
-                    alt={post.title}
-                  />
-                  <Card.Body>
-                    <Card.Title className="news-title">{post.title}</Card.Title>
-                    <Card.Text className="news-excerpt">{post.excerpt}</Card.Text>
-                    <p className="news-meta">
-                      bởi <span>{post.author}</span> •{" "}
-                      {new Date(post.date).toLocaleDateString("vi-VN")}
-                    </p>
-                   
-                  </Card.Body>
-                </Card>
+                <Link style={{ textDecoration: "none" }} to={`/tin-tuc/${post.id}`}>
+                  <Card className="news-card h-100 shadow-sm">
+                    <Card.Img
+                      variant="top"
+                      src={post.image || "/images/no-image.png"}
+                      alt={post.title}
+                    />
+                    <Card.Body>
+                      <Card.Title className="news-title">{post.title}</Card.Title>
+                      <Card.Text className="news-excerpt">{post.excerpt}</Card.Text>
+                      <p className="news-meta">
+                        bởi <span>{post.author}</span> •{" "}
+                        {new Date(post.date).toLocaleDateString("vi-VN")}
+                      </p>
+                    </Card.Body>
+                  </Card>
                 </Link>
-
               </Col>
             ))}
           </Row>
@@ -58,9 +50,7 @@ const NewsList = () => {
 
         {/* Sidebar */}
         <Col md={4}>
-          {/* Bài viết mới nhất */}
           <RelatedPosts posts={latestPosts} title="Bài viết mới nhất" />
-
         </Col>
       </Row>
     </Container>

@@ -3,17 +3,18 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col } from "react-bootstrap"
 import { motion } from "framer-motion"
-import axios from "axios"
 import "./ProductDetailPage.css"
 import RelatedProducts from "../../components/RelatedProducts/RelatedProducts"
+import { products as allProducts } from "../../../api/data" // import data trực tiếp
 
 const ProductDetail = () => {
     const { id } = useParams()
     const [product, setProduct] = useState(null)
     const [relatedProducts, setRelatedProducts] = useState([])
     const [activeTab, setActiveTab] = useState("description")
-    const [activeIndex, setActiveIndex] = useState(null);
-    const [showAll, setShowAll] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(null)
+    const [showAll, setShowAll] = useState(false)
+
     const faqs = [
         {
           question: "Làm thế nào để tôi đặt hàng online?",
@@ -31,36 +32,31 @@ const ProductDetail = () => {
         },
         {
           question: "Nếu tôi đặt hàng trực tuyến có rủi ro gì không?",
-          answer:
-            "Chúng tôi cam kết bảo mật thông tin khách hàng và giao hàng đúng hạn thông qua đối tác vận chuyển uy tín.",
+          answer: "Chúng tôi cam kết bảo mật thông tin khách hàng và giao hàng đúng hạn thông qua đối tác vận chuyển uy tín.",
         },
         {
           question: "Nếu tôi mua sản phẩm với số lượng nhiều thì giá có được giảm không?",
-          answer:
-            "Khách hàng mua số lượng lớn sẽ nhận được ưu đãi/chiết khấu riêng. Vui lòng liên hệ CSKH để biết thêm chi tiết.",
+          answer: "Khách hàng mua số lượng lớn sẽ nhận được ưu đãi/chiết khấu riêng. Vui lòng liên hệ CSKH để biết thêm chi tiết.",
         },
         {
           question: "Quy định hoàn trả và đổi sản phẩm của Mode như thế nào?",
-          answer:
-            "Sản phẩm có thể đổi trả trong vòng 14 ngày kể từ ngày mua, nếu còn nguyên tem, nhãn mác và chưa qua sử dụng.",
+          answer: "Sản phẩm có thể đổi trả trong vòng 14 ngày kể từ ngày mua, nếu còn nguyên tem, nhãn mác và chưa qua sử dụng.",
         },
         {
           question: "Tôi mua hàng rồi, không vừa ý có thể đổi lại hay không?",
-          answer:
-            "Bạn có thể đổi sản phẩm trong vòng 7 ngày kể từ ngày mua, với điều kiện sản phẩm chưa sử dụng và còn nguyên bao bì.",
+          answer: "Bạn có thể đổi sản phẩm trong vòng 7 ngày kể từ ngày mua, với điều kiện sản phẩm chưa sử dụng và còn nguyên bao bì.",
         },
-      ];
+    ]
+
     useEffect(() => {
-        axios
-            .get(`/api/products/${id}`)
-            .then((res) => {
-                setProduct(res.data)
-                // fetch sản phẩm liên quan theo category
-                axios
-                    .get(`/api/products?category=${res.data.category}`)
-                    .then((r) => setRelatedProducts(r.data.filter((p) => p.id !== res.data.id)))
-            })
-            .catch((err) => console.error(err))
+        // Tìm product theo string id
+        const prod = allProducts.find(p => p.id === id)
+        if (prod) {
+            setProduct(prod)
+            setRelatedProducts(
+                allProducts.filter(p => p.category === prod.category && p.id !== prod.id)
+            )
+        }
     }, [id])
 
     if (!product) return <p>Đang tải...</p>
@@ -68,7 +64,6 @@ const ProductDetail = () => {
     return (
         <section className="product-detail-page">
             <Container>
-                {/* TOP ROW: IMAGE + INFO */}
                 <Row>
                     {/* LEFT IMAGE */}
                     <Col md={4}>
@@ -92,7 +87,7 @@ const ProductDetail = () => {
                             Tình trạng: <b style={{ color: "green" }}>Còn hàng</b>
                         </p>
                         <p className="product-price" style={{ display: "flex", justifyContent: "start" }}>
-                            Giá: <span className="price-new">99,000₫</span>
+                            Giá: <span className="price-new">{product.price}₫</span>
                         </p>
 
                         {/* SHARE */}
@@ -111,34 +106,10 @@ const ProductDetail = () => {
                     <Col md={4} className="coupon-column">
                         <div className="coupon-list">
                             {[
-                                {
-                                    icon: "/images/home_coupon_1_img.png",
-                                    title: "Miễn phí vận chuyển",
-                                    desc: "Đơn hàng từ 300k",
-                                    code: "FREE300",
-                                    expiry: "10/12/2025"
-                                },
-                                {
-                                    icon: "/images/home_coupon_2_img.png",
-                                    title: "Giảm 20%",
-                                    desc: "Đơn từ 200k",
-                                    code: "SALE20",
-                                    expiry: "10/12/2025"
-                                },
-                                {
-                                    icon: "/images/home_coupon_3_img.png",
-                                    title: "Giảm 50k",
-                                    desc: "Đơn từ 500k",
-                                    code: "DISCOUNT50",
-                                    expiry: "10/12/2025"
-                                },
-                                {
-                                    icon: "/images/home_coupon_4_img.png",
-                                    title: "Giảm 10%",
-                                    desc: "Đơn từ 100k",
-                                    code: "HOT10",
-                                    expiry: "10/12/2025"
-                                }
+                                { icon: "/images/home_coupon_1_img.png", title: "Miễn phí vận chuyển", desc: "Đơn hàng từ 300k", code: "FREE300", expiry: "10/12/2025" },
+                                { icon: "/images/home_coupon_2_img.png", title: "Giảm 20%", desc: "Đơn từ 200k", code: "SALE20", expiry: "10/12/2025" },
+                                { icon: "/images/home_coupon_3_img.png", title: "Giảm 50k", desc: "Đơn từ 500k", code: "DISCOUNT50", expiry: "10/12/2025" },
+                                { icon: "/images/home_coupon_4_img.png", title: "Giảm 10%", desc: "Đơn từ 100k", code: "HOT10", expiry: "10/12/2025" }
                             ].map((coupon, index) => (
                                 <div className="coupon-item" key={index}>
                                     <div className="coupon-left">
@@ -158,7 +129,8 @@ const ProductDetail = () => {
                         </div>
                     </Col>
                 </Row>
-                {/* BENEFITS / COUPON LIST */}
+
+                {/* BENEFITS */}
                 <div className="benefit-row">
                     {[
                         { icon: "/images/product_info1_desc1_img.png", text: "Miễn phí giao hàng" },
@@ -175,7 +147,7 @@ const ProductDetail = () => {
                     ))}
                 </div>
 
-                {/* BOTTOM ROW: TABS + RELATED PRODUCTS */}
+                {/* BOTTOM ROW: TABS + RELATED */}
                 <Row className="tab-related-row">
                     {/* LEFT TABS */}
                     <Col md={8}>
@@ -238,72 +210,72 @@ const ProductDetail = () => {
                                     </div>
                                 )}
 
-{activeTab === "terms" && (
-      <div className="terms-content">
-        <h4>1. Giới thiệu</h4>
-        <p>
-          Chào mừng quý khách hàng đến với website chúng tôi.
-        </p>
-        <p>
-          Khi quý khách hàng truy cập vào trang website của chúng tôi có nghĩa là quý khách đồng ý với các điều khoản này.
-          Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc lược bỏ bất kỳ phần nào trong Điều khoản mua bán hàng hóa này,
-          vào bất cứ lúc nào. Các thay đổi có hiệu lực ngay khi được đăng trên trang web mà không cần thông báo trước.
-          Và khi quý khách tiếp tục sử dụng trang web, sau khi các thay đổi về Điều khoản này được đăng tải, có nghĩa là
-          quý khách chấp nhận với những thay đổi đó.
-        </p>
-        <p>
-          Quý khách hàng vui lòng kiểm tra thường xuyên để cập nhật những thay đổi của chúng tôi.
-        </p>
+                                {activeTab === "terms" && (
+                                    <div className="terms-content">
+                                        <h4>1. Giới thiệu</h4>
+                                        <p>
+                                            Chào mừng quý khách hàng đến với website chúng tôi.
+                                        </p>
+                                        <p>
+                                            Khi quý khách hàng truy cập vào trang website của chúng tôi có nghĩa là quý khách đồng ý với các điều khoản này.
+                                            Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc lược bỏ bất kỳ phần nào trong Điều khoản mua bán hàng hóa này,
+                                            vào bất cứ lúc nào. Các thay đổi có hiệu lực ngay khi được đăng trên trang web mà không cần thông báo trước.
+                                            Và khi quý khách tiếp tục sử dụng trang web, sau khi các thay đổi về Điều khoản này được đăng tải, có nghĩa là
+                                            quý khách chấp nhận với những thay đổi đó.
+                                        </p>
+                                        <p>
+                                            Quý khách hàng vui lòng kiểm tra thường xuyên để cập nhật những thay đổi của chúng tôi.
+                                        </p>
 
-        <h4>2. Hướng dẫn sử dụng website</h4>
-        <p>
-          Khi vào web của chúng tôi, khách hàng phải đảm bảo đủ 18 tuổi, hoặc truy cập dưới sự giám sát của cha mẹ
-          hay người giám hộ hợp pháp. Khách hàng đảm bảo có đầy đủ hành vi dân sự để thực hiện các giao dịch
-          mua bán hàng hóa theo quy định hiện hành của pháp luật Việt Nam.
-        </p>
-        <p>
-          Trong suốt quá trình đăng ký, quý khách đồng ý nhận email quảng cáo từ website. Nếu không muốn tiếp tục
-          nhận mail, quý khách có thể từ chối bằng cách nhấp vào đường link ở dưới cùng trong mọi email quảng cáo.
-        </p>
+                                        <h4>2. Hướng dẫn sử dụng website</h4>
+                                        <p>
+                                            Khi vào web của chúng tôi, khách hàng phải đảm bảo đủ 18 tuổi, hoặc truy cập dưới sự giám sát của cha mẹ
+                                            hay người giám hộ hợp pháp. Khách hàng đảm bảo có đầy đủ hành vi dân sự để thực hiện các giao dịch
+                                            mua bán hàng hóa theo quy định hiện hành của pháp luật Việt Nam.
+                                        </p>
+                                        <p>
+                                            Trong suốt quá trình đăng ký, quý khách đồng ý nhận email quảng cáo từ website. Nếu không muốn tiếp tục
+                                            nhận mail, quý khách có thể từ chối bằng cách nhấp vào đường link ở dưới cùng trong mọi email quảng cáo.
+                                        </p>
 
-        <h4>3. Thanh toán an toàn và tiện lợi</h4>
-        <p>Người mua có thể tham khảo các phương thức thanh toán sau đây và lựa chọn áp dụng phương thức phù hợp:</p>
-        <ul>
-          <li>Cách 1: Thanh toán trực tiếp (người mua nhận hàng tại địa chỉ người bán)</li>
-          <li>Cách 2: Thanh toán sau (COD – giao hàng và thu tiền tận nơi)</li>
-          <li>Cách 3: Thanh toán online qua thẻ tín dụng, chuyển khoản</li>
-        </ul>
-      </div>
-    )}
+                                        <h4>3. Thanh toán an toàn và tiện lợi</h4>
+                                        <p>Người mua có thể tham khảo các phương thức thanh toán sau đây và lựa chọn áp dụng phương thức phù hợp:</p>
+                                        <ul>
+                                            <li>Cách 1: Thanh toán trực tiếp (người mua nhận hàng tại địa chỉ người bán)</li>
+                                            <li>Cách 2: Thanh toán sau (COD – giao hàng và thu tiền tận nơi)</li>
+                                            <li>Cách 3: Thanh toán online qua thẻ tín dụng, chuyển khoản</li>
+                                        </ul>
+                                    </div>
+                                )}
 
-{activeTab === "faq" && (
-  <div className="faq-section">
-    {(showAll ? faqs : faqs.slice(0, 3)).map((faq, index) => (
-      <div key={index} className="faq-item">
-        <div
-          className="faq-question"
-          onClick={() =>
-            setActiveIndex(activeIndex === index ? null : index)
-          }
-        >
-          <span>{faq.question}</span>
-          <span className="faq-icon">
-            {activeIndex === index ? "−" : "+"}
-          </span>
-        </div>
-        {activeIndex === index && (
-          <div className="faq-answer">{faq.answer}</div>
-        )}
-      </div>
-    ))}
+                                {activeTab === "faq" && (
+                                    <div className="faq-section">
+                                        {(showAll ? faqs : faqs.slice(0, 3)).map((faq, index) => (
+                                            <div key={index} className="faq-item">
+                                                <div
+                                                    className="faq-question"
+                                                    onClick={() =>
+                                                        setActiveIndex(activeIndex === index ? null : index)
+                                                    }
+                                                >
+                                                    <span>{faq.question}</span>
+                                                    <span className="faq-icon">
+                                                        {activeIndex === index ? "−" : "+"}
+                                                    </span>
+                                                </div>
+                                                {activeIndex === index && (
+                                                    <div className="faq-answer">{faq.answer}</div>
+                                                )}
+                                            </div>
+                                        ))}
 
-    <div className="faq-more">
-      <button onClick={() => setShowAll(!showAll)}>
-        {showAll ? "THU GỌN" : "XEM THÊM"}
-      </button>
-    </div>
-  </div>
-)}
+                                        <div className="faq-more">
+                                            <button onClick={() => setShowAll(!showAll)}>
+                                                {showAll ? "THU GỌN" : "XEM THÊM"}
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
 
                             </div>
                         </div>
@@ -314,7 +286,7 @@ const ProductDetail = () => {
                         <h4 className="related-title">Sản phẩm liên quan</h4>
                         <div className="related-list">
                             {relatedProducts.map((item) => (
-                                <div className="related-item -flex flex-wrap flex-column align-items-center  justify-content-center" key={item.id} style={{padding:'2% 8%'}}>
+                                <div className="related-item -flex flex-wrap flex-column align-items-center  justify-content-center" key={item.id} style={{ padding: '2% 8%' }}>
                                     <img src={item.image} alt={item.name} />
                                     <p>{item.name}</p>
                                     <span className="related-price">{item.price}₫</span>
@@ -323,7 +295,9 @@ const ProductDetail = () => {
                         </div>
                     </Col>
                 </Row>
-                <RelatedProducts category={product.category} />
+
+                {/* Swiper Related Products */}
+                <RelatedProducts category={product.category}/>
             </Container>
         </section>
     )
