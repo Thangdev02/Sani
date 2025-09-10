@@ -41,7 +41,7 @@ const FeaturesSection = () => {
                 <Row className="text-center mb-5">
                     <Col>
                         <p className="section-subtitle">Hành trình của</p>
-                        <h2 className="section-title">SANI</h2>
+                        <img src="/images/saniLogo.png" alt="Logo" style={{ width: "14%" ,marginTop:"2%" }} />
                         <div className="divider mx-auto"></div>
                     </Col>
                 </Row>

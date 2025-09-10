@@ -18,13 +18,17 @@
     padding: 15px 0;
     border-bottom: 1px solid #eee;
   }
-  
+  .logo-img {
+    height: 40px;  /* chỉnh kích thước logo */
+    width: auto;
+  }
   .brand-logo {
     cursor: pointer;
   }
   
   .nav-item-custom {
     color: #333 !important;
+    font-size: 1.2rem;
     font-weight: 500;
     margin: 0 15px;
     position: relative;
@@ -32,7 +36,7 @@
   }
   
   .nav-item-custom:hover {
-    color: #8b4513 !important;
+    color: #e54625 !important;
   }
   
   .nav-item-custom::after {
@@ -42,7 +46,7 @@
     height: 2px;
     bottom: 0;
     left: 50%;
-    background-color: #8b4513;
+    background-color: #e54625;
     transition: all 0.3s ease;
     transform: translateX(-50%);
   }
@@ -92,4 +96,7 @@
   .nav-item.dropdown:hover .nav-link {
     pointer-events: auto;
   }
-  
+  /* Ẩn mũi tên dropdown */
+.lang-dropdown .dropdown-toggle::after {
+  display: none !important;
+}

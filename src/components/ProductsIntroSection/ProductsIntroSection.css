@@ -7,7 +7,11 @@
     color: #555;
     line-height: 1.6;
   }
-  
+  .text-green-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0e3f36 !important;
+  }
   .products-intro-section .btn-danger {
     background-color: #e74c3c;
     border: none;
@@ -20,4 +24,31 @@
   .products-intro-section .btn-danger:hover {
     background-color: #c0392b;
   }
-  
+  .bt-or{
+    padding: 10px 24px;
+    background: #e54625;
+    font-weight: 600;
+    border-radius: 6px;
+    color: white;
+    transition: color 0.3s ease;
+    border: none;
+    box-shadow: 4px 4px 4px rgba(43, 43, 43, 0.1);
+    transition: all 0.3s ease;
+  }
+  .bt-g{
+    padding: 10px 24px;
+    background: #0e3f36;
+    font-weight: 600;
+    border-radius: 6px;
+    color: white;
+    transition: color 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  .bt-or:hover{
+    background:  #f36b50;
+  }
+  .bt-g:hover{
+    background: #166053;
+  }

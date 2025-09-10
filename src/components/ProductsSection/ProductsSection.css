@@ -1,5 +1,5 @@
 .core-values-section {
-    background-color: #651f24;
+    background-color: #0e3f36;
     color: #fff;
     padding: 80px 0;
   }
@@ -12,10 +12,9 @@
     margin-bottom: 10px;
   }
   
-  .section-title1 {
+  .section-title2 {
     font-size: 28px;
     font-weight: 700;
-    color: #fff;
   }
   
   .section-divider {
@@ -52,8 +51,8 @@
   
   .icon-circle,
   .badge-circle {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     background: #fff;
     display: flex;

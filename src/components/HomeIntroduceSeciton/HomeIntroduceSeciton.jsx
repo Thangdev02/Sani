@@ -29,7 +29,7 @@ const HomeIntroduceSeciton = () => {
                     {/* Left - image */}
                     <Col md={6} className="text-center mb-4 mb-md-0">
                         <motion.img
-                            src="/images/home_introduce_img.jpg"
+                            src="/images/pkr.png"
                             alt="Black Pepper"
                             className="img-fluid product-image"
                             initial={{ opacity: 0, x: -50 }}
@@ -51,7 +51,7 @@ const HomeIntroduceSeciton = () => {
                             CHI TIẾT VÀ ĐÓNG GÓI
                         </motion.p>
                         <motion.h2
-                            className="section-title text-center mb-4"
+                            className="text-green-title text-center mb-4"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.1 }}

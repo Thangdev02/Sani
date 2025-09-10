@@ -89,7 +89,7 @@ const ProductPage = () => {
 
         {/* Category filter */}
         <Row className="justify-content-center mb-4">
-          {["all","tieu","que","nghe"].map((cat) => (
+          {["all","gao","nui","bun","banhcanh","hutieu","pho"].map((cat) => (
             <Col xs="auto" key={cat}>
               <Button
                 variant={activeCategory === cat ? "danger" : "outline-secondary"}

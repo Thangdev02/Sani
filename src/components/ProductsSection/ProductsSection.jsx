@@ -2,7 +2,6 @@
 import { Container, Row, Col } from "react-bootstrap"
 import { motion } from "framer-motion"
 import "./ProductsSection.css"
-import InforImage from "../../assets/images/home_info_img_center.jpg"
 import InforImage1 from "../../assets/images/home_info_1_img.jpg"
 import InforImage2 from "../../assets/images/home_info_2_img.jpg"
 import InforImage3 from "../../assets/images/home_info_3_img.jpg"
@@ -74,7 +73,7 @@ const ProductsSection = () => {
                             GIÁ TRỊ CỐT LÕI
                         </motion.h6>
                         <motion.h2
-                            className="section-title text-white"
+                            className="section-title2 text-white"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
@@ -103,8 +102,8 @@ const ProductsSection = () => {
                                     <h5>{item.title}</h5>
                                     <p>{item.desc}</p>
                                 </div>
-                                <div className="icon-circle">
-                                    <img src={item.icon} alt={item.title} className="icon-img" />
+                                <div  className="badge-circle">
+                                    <img src={item.icon} alt={item.title} className="badge-icon" />
                                 </div>
                             </motion.div>
                         ))}
@@ -114,11 +113,11 @@ const ProductsSection = () => {
                     {/* Center image */}
                     <Col md={4} className="text-center">
                         <motion.img
-                            src={InforImage}
+                            src="/images/plant_rice.png"
                             alt="Pepper Grinder"
                             className="core-image"
                             initial={{ opacity: 0, scale: 0.3 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
+                            whileInView={{ opacity: 1, scale: 1.4 }}
                             transition={{ duration: 1.4 }}
                             viewport={{ once: true }}
                             style={{marginBottom:'15%'}}

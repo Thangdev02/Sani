@@ -3,7 +3,7 @@
           {
             "id": "1",
             "name": "Bột tỏi nguyên chất Vipep 600g - bột gia vị tiện lợi dễ thấm cho món ăn đậm đà, thơm ngon chuẩn vị",
-            "category": "tieu",
+            "category": "gao",
             "price": 151000,
             "oldPrice": 167000,
             "discount": 10,
@@ -16,7 +16,7 @@
           {
             "id": "2",
             "name": "Combo Muối Hồng Himalaya Xay Nhuyễn 1.1kg + Muối Hồng Nguyên Hạt Cối Xay Vipep 120gr",
-            "category": "que",
+            "category": "nui",
             "price": 99000,
             "image": "/images/products/product2.jpg",
             "description": "Muối hồng Himalaya Vipep được xay nhuyễn hoàn toàn từ 100% muối hồng Himalaya tự nhiên và được đóng gói an toàn.",
@@ -27,7 +27,7 @@
           {
             "id": "3",
             "name": "Combo tẩm ướp nấu ăn tỏi bột, sả bột, hành bột, ngủ vị hương thơm ngon tự nhiên - Gia vị Vipep",
-            "category": "nghe",
+            "category": "bun",
             "price": 116000,
             "image": "/images/products/product3.jpg",
             "description": "Combo gia vị tẩm ướp đa năng giúp chế biến món ăn nhanh chóng, tiện lợi, giữ được hương vị tự nhiên.",
@@ -38,7 +38,7 @@
           {
             "id": "4",
             "name": "Gói Gia Vị Xốt Phở Trộn 82g",
-            "category": "huuco",
+            "category": "banhcanh",
             "price": 129000,
             "image": "/images/products/product4.jpg",
             "description": "Gia vị Xốt Phở Trộn giúp món phở trở nên đậm đà và tiện lợi hơn, phù hợp cho bữa ăn nhanh.",
@@ -49,7 +49,7 @@
           {
             "id": "5",
             "name": "Lá Kinh Giới Vipep Hũ Nhựa 6g - Gia vị Vipep",
-            "category": "huuco",
+            "category": "pho",
             "price": 27000,
             "oldPrice": 30000,
             "discount": 10,
@@ -62,7 +62,7 @@
           {
             "id": "6",
             "name": "Muối Trắng Hymalaya Vipep Nguyên Hạt Hũ Nhựa 500g - Gia vị Vipep",
-            "category": "que",
+            "category": "gao",
             "price": 47000,
             "oldPrice": 53000,
             "discount": 11,

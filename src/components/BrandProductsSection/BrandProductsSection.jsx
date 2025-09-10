@@ -16,7 +16,7 @@ const BrandProductsSection = () => {
     <section className="brand-products-section py-5">
       <Container>
         <p className="section-subtitle">Sản phẩm nổi bật</p>
-        <h2 className="section-title">NHÃN HÀNG RIÊNG CỦA CHÚNG TÔI</h2>
+        <h2 className="text-green-title">NHÃN HÀNG RIÊNG CỦA CHÚNG TÔI</h2>
         <div className="divider mb-4"></div>
 
         {/* Swiper */}

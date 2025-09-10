@@ -8,14 +8,17 @@ import "./ProductsMainSection.css"
 import { products as allProducts } from "../../../api/data" // tùy đường dẫn file data.js
 
 const categories = [
-  { label: "Tiêu", value: "tieu" },
-  { label: "Quế", value: "que" },
-  { label: "Nghệ", value: "nghe" },
-  { label: "Các sản phẩm hữu cơ", value: "huuco" }
+  { label: "Gạo", value: "gao" },
+  { label: "Nui", value: "nui" },
+  { label: "Bún", value: "bun" },
+  { label: "Bánh Canh", value: "banhcanh" },
+  { label: "Hủ Tiếu", value: "hutieu" },
+  { label: "Phở", value: "pho" }
+
 ]
 
 const ProductsMainSection = () => {
-  const [activeCategory, setActiveCategory] = useState("tieu")
+  const [activeCategory, setActiveCategory] = useState("gao")
 
   // lọc sản phẩm theo category
   const filteredProducts = allProducts.filter(p => p.category === activeCategory)
@@ -27,7 +30,7 @@ const ProductsMainSection = () => {
         <Row className="text-center mb-4">
           <Col>
             <p className="section-subtitle">Sản phẩm đạt chất lượng cao</p>
-            <h2 className="section-title">Gia vị sạch & An Toàn</h2>
+            <h2 className="text-green-title">Gia vị sạch & An Toàn</h2>
             <div className="divider mx-auto"></div>
           </Col>
         </Row>

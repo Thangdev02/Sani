@@ -33,15 +33,7 @@ const ContactPage = () => {
     >
       {/* Google Map */}
       <div className="map-container">
-        <iframe
-          title="Google Map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.656535302449!2d106.66017267581772!3d10.762622959414342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f29299b8cd5%3A0xf9b68fa57c93f8a9!2zMTgyIMSQLiBMw6ogR2nDoSwgcGjGsOG7nW5nIDE1LCBRdeG6rW4gMTEsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1694172715736!5m2!1svi!2s"
-          width="100%"
-          height="400"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-        ></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.2462612795857!2d106.74090661111173!3d10.868864989240842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527f47a3bef4f%3A0xbd66929099d1abc6!2zMTUxLzUwLzUsIDE1MSDEkC4gVGFtIENow6J1LCBLaHUgcGjhu5EgMiwgVGjhu6cgxJDhu6ljLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1757529910989!5m2!1svi!2s" style= {{border:0, height:'450px', width:'100%'}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
       {/* Form + Contact Info */}
@@ -106,7 +98,7 @@ const ContactPage = () => {
                 />
               </Form.Group>
               <p style={{ fontSize: "0.8rem", color: "gray" }}>This site is protected by reCAPTCHA and the Google <span style={{ color: "blue" }}>Privacy Policy</span> and <span style={{ color: "blue" }}>Terms of Service</span> apply.</p>
-              <Button variant="danger" type="submit">
+              <Button className="contact-button" type="submit">
                 GỬI CHO CHÚNG TÔI
               </Button>
             </Form>
@@ -120,7 +112,7 @@ const ContactPage = () => {
                 <span className="icon-circle"><GeoAltFill  /></span>
                 <div>
                   <b>Địa chỉ:</b><br />
-                  Tầng 4, tòa nhà Flemington, số 182, đường Lê Đại Hành, phường 15, quận 11, Tp. Hồ Chí Minh.
+                  151/24A Đường Tam Châu, Khu Phố 2, Phường Tam Bình, TP Hồ Chí Minh
                 </div>
               </li>
               <li>
