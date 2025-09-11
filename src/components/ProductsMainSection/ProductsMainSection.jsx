@@ -30,7 +30,7 @@ const ProductsMainSection = () => {
         <Row className="text-center mb-4">
           <Col>
             <p className="section-subtitle">Sản phẩm đạt chất lượng cao</p>
-            <h2 className="text-green-title">Gia vị sạch & An Toàn</h2>
+            <h2 className="text-green-title">Thực phẩm sạch & An Toàn</h2>
             <div className="divider mx-auto"></div>
           </Col>
         </Row>
@@ -41,7 +41,7 @@ const ProductsMainSection = () => {
             <Col xs="auto" key={cat.value}>
               <Button
                 variant={activeCategory === cat.value ? "danger" : "outline-secondary"}
-                className="category-btn"
+                className="category-btn mb-3"
                 onClick={() => setActiveCategory(cat.value)}
               >
                 {cat.label}

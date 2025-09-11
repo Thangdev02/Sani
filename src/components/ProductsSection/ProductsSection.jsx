@@ -117,7 +117,7 @@ const ProductsSection = () => {
                             alt="Pepper Grinder"
                             className="core-image"
                             initial={{ opacity: 0, scale: 0.3 }}
-                            whileInView={{ opacity: 1, scale: 1.4 }}
+                            whileInView={{ opacity: 1, scale: 1.2 }}
                             transition={{ duration: 1.4 }}
                             viewport={{ once: true }}
                             style={{marginBottom:'15%'}}

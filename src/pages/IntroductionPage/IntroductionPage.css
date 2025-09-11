@@ -1,210 +1,239 @@
 .introduction-page {
-    font-family: "Montserrat", sans-serif;
-    color: #333;
-    line-height: 1.6;
-  }
-  
-  /* --- Section 1: Intro --- */
-  .intro-section {
-    padding: 80px 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  font-family: "Montserrat", sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* --- Section 1: Intro --- */
+.intro-section {
+  padding: 80px 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-content {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.intro-image {
+  position: relative;
+}
+
+.image-frame {
+  border: 5px solid #e74c3c;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.image-frame img {
+  width: 350px;
+  height: auto;
+  display: block;
+}
+
+.intro-text h4 {
+  font-size: 20px;
+  color: #666;
+}
+
+.intro-text h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #c0392b;
+}
+
+/* Nút điều hướng */
+.navigation-buttons {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.nav-button {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.nav-button:hover {
+  background: #c0392b;
+}
+
+/* --- Section 2: Quality --- */
+.quality-section {
+  padding: 80px 10%;
+  background: #0e3f36;
+  color: #fff;
+}
+
+.quality-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.quality-card {
+  border: 1px solid #fff;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quality-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+.quality-image img {
+  width: 100%;
+  height: 560px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* --- Section 3: About Timeline --- */
+.about-section {
+  padding: 80px 10%;
+  background: #fff;
+}
+
+.about-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.about-item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.about-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-item img {
+  width: 50%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.about-text {
+  max-width: 500px;
+}
+
+.about-text span {
+  font-size: 14px;
+  color: #888;
+}
+
+.about-text h4 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+.about-text.highlight {
+  background: #e74c3c;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
   .intro-content {
-    display: flex;
-    gap: 50px;
-    align-items: center;
-  }
-  
-  .intro-image {
-    position: relative;
-  }
-  
-  .image-frame {
-    border: 5px solid #e74c3c; /* Khung viền màu cam như Figma */
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .image-frame img {
-    width: 350px;
-    height: auto;
-    display: block;
-  }
-  
-  .intro-text h4 {
-    font-size: 20px;
-    color: #666;
-  }
-  
-  .intro-text h2 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .btn-primary {
-    background: #e74c3c;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .btn-primary:hover {
-    background: #c0392b;
-  }
-  
-  /* Nút điều hướng */
-  .navigation-buttons {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-  }
-  
-  .nav-button {
-    background: #e74c3c;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 16px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-  }
-  
-  .nav-button:hover {
-    background: #c0392b;
-  }
-  
-  .nav-button.back {
-    margin-right: 5px;
-  }
-  
-  .nav-button.next {
-    margin-left: 5px;
-  }
-  
-  /* --- Section 2: Quality --- (giữ nguyên, không thay đổi) */
-  .quality-section {
-    padding: 80px 10%;
-    background: #0e3f36;
-    color: #fff;
-    position: relative;
-  }
-  
-  .quality-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: start;
-    gap: 30px;
-    position: relative;
-  }
-  
-  
-  /* Card */
-  .quality-card {
-    border: 1px solid #fff;
-    padding: 20px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 2;
-    position: relative;
-  }
-  
-  .quality-card:hover {
-    background: rgba(255, 255, 255, 0.15);
-  }
-  
-  /* Center image */
-  .quality-image {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-  
-  .quality-image img {
-    width: 100%;
-    border-radius: 12px;
-    transition: opacity 0.6s ease-in-out;
-  }
-  
-  /* Khi hover card => card nổi lên trên ảnh */
-  .quality-card:hover {
-    z-index: 3;
-    background-color: #e74c3c;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  }
-  
-  
-  .quality-image img {
-    width: 100%;
-    height: 560px;
-    border-radius: 12px;
-  }
-  
-  /* --- Section 3: About Timeline --- */
-  .about-section {
-    padding: 80px 10%;
-    background: #fff;
-  }
-  
-  .about-timeline {
-    display: flex;
     flex-direction: column;
-    gap: 50px;
+    text-align: center;
   }
-  
-  .about-item {
-    display: flex;
-    align-items: center;
-    gap: 30px;
+
+  .image-frame img {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
   }
-  
+
+  .quality-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .quality-image img {
+    max-width: 80%;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  .about-item,
   .about-item.reverse {
-    flex-direction: row-reverse;
+    flex-direction: column;
+    text-align: center;
   }
-  
+
   .about-item img {
-    width: 350px;
-    border-radius: 12px;
+    width: 100%;
+    height: auto;
   }
-  
+
   .about-text {
-    max-width: 500px;
+    max-width: 100%;
+    margin-top: 20px;
   }
-  
-  .about-text span {
-    font-size: 14px;
-    color: #888;
+}
+
+@media (max-width: 768px) {
+  .about-item {
+    position: relative;
+    height: auto !important; /* bỏ chiều cao cứng */
+    flex-direction: column;
   }
-  
-  .about-text h4 {
-    font-size: 22px;
-    margin: 10px 0;
+
+  .about-item img {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
   }
-  
-  .about-text.highlight {
-    background: #e74c3c;
-    color: #fff;
-    padding: 20px;
-    border-radius: 8px;
+
+  .about-item .about-text {
+    position: static !important;
+    width: 100% !important;
+    margin-top: 15px;
+    padding: 15px;
+    text-align: center !important;
   }
-  
+}

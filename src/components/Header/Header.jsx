@@ -5,6 +5,7 @@ import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap"
 import { LinkContainer } from "react-router-bootstrap"
 import { motion } from "framer-motion"
 import "./Header.css"
+import { Search } from "react-bootstrap-icons"
 
 const menuItems = [
     { title: "Trang chủ", path: "/" },
@@ -62,6 +63,13 @@ const Header = () => {
 
                             {/* Language Dropdown */}
                             <div className="navbar-actions d-flex align-items-center">
+                            <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="btn-icon me-3"
+                                >
+                                    <Search size={20} />
+                                </motion.button>
                                 <NavDropdown
                                     title={
                                         <span className="d-flex align-items-center">

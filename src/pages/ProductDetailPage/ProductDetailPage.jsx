@@ -17,34 +17,34 @@ const ProductDetail = () => {
 
     const faqs = [
         {
-          question: "Làm thế nào để tôi đặt hàng online?",
-          answer: (
-            <>
-              Mode Fashion rất vui lòng hỗ trợ khách hàng đặt hàng online bằng một trong những cách sau:
-              <ul>
-                <li>Truy cập website Mode Fashion</li>
-                <li>Gửi email đặt hàng: hi@modefashion.com</li>
-                <li>Gọi hotline: 1900.636.000 để đặt sản phẩm</li>
-                <li>Chat với tư vấn viên trên fanpage</li>
-              </ul>
-            </>
-          ),
+            question: "Làm thế nào để tôi đặt hàng online?",
+            answer: (
+                <>
+                    Mode Fashion rất vui lòng hỗ trợ khách hàng đặt hàng online bằng một trong những cách sau:
+                    <ul>
+                        <li>Truy cập website Mode Fashion</li>
+                        <li>Gửi email đặt hàng: hi@modefashion.com</li>
+                        <li>Gọi hotline: 1900.636.000 để đặt sản phẩm</li>
+                        <li>Chat với tư vấn viên trên fanpage</li>
+                    </ul>
+                </>
+            ),
         },
         {
-          question: "Nếu tôi đặt hàng trực tuyến có rủi ro gì không?",
-          answer: "Chúng tôi cam kết bảo mật thông tin khách hàng và giao hàng đúng hạn thông qua đối tác vận chuyển uy tín.",
+            question: "Nếu tôi đặt hàng trực tuyến có rủi ro gì không?",
+            answer: "Chúng tôi cam kết bảo mật thông tin khách hàng và giao hàng đúng hạn thông qua đối tác vận chuyển uy tín.",
         },
         {
-          question: "Nếu tôi mua sản phẩm với số lượng nhiều thì giá có được giảm không?",
-          answer: "Khách hàng mua số lượng lớn sẽ nhận được ưu đãi/chiết khấu riêng. Vui lòng liên hệ CSKH để biết thêm chi tiết.",
+            question: "Nếu tôi mua sản phẩm với số lượng nhiều thì giá có được giảm không?",
+            answer: "Khách hàng mua số lượng lớn sẽ nhận được ưu đãi/chiết khấu riêng. Vui lòng liên hệ CSKH để biết thêm chi tiết.",
         },
         {
-          question: "Quy định hoàn trả và đổi sản phẩm của Mode như thế nào?",
-          answer: "Sản phẩm có thể đổi trả trong vòng 14 ngày kể từ ngày mua, nếu còn nguyên tem, nhãn mác và chưa qua sử dụng.",
+            question: "Quy định hoàn trả và đổi sản phẩm của Mode như thế nào?",
+            answer: "Sản phẩm có thể đổi trả trong vòng 14 ngày kể từ ngày mua, nếu còn nguyên tem, nhãn mác và chưa qua sử dụng.",
         },
         {
-          question: "Tôi mua hàng rồi, không vừa ý có thể đổi lại hay không?",
-          answer: "Bạn có thể đổi sản phẩm trong vòng 7 ngày kể từ ngày mua, với điều kiện sản phẩm chưa sử dụng và còn nguyên bao bì.",
+            question: "Tôi mua hàng rồi, không vừa ý có thể đổi lại hay không?",
+            answer: "Bạn có thể đổi sản phẩm trong vòng 7 ngày kể từ ngày mua, với điều kiện sản phẩm chưa sử dụng và còn nguyên bao bì.",
         },
     ]
 
@@ -66,7 +66,7 @@ const ProductDetail = () => {
             <Container>
                 <Row>
                     {/* LEFT IMAGE */}
-                    <Col md={4}>
+                    <Col md={6}>
                         <motion.img
                             src={product.image}
                             alt={product.name}
@@ -78,7 +78,7 @@ const ProductDetail = () => {
                     </Col>
 
                     {/* MIDDLE INFO */}
-                    <Col md={4}>
+                    <Col md={6}>
                         <h2 className="product-title">{product.name}</h2>
                         <p className="product-description">
                             {product.shortDescription || "Combo Muối Hồng Himalaya Xay Nhuyễn 1.1kg + Muối Hồng Nguyên Hạt 120gr"}
@@ -100,34 +100,32 @@ const ProductDetail = () => {
                                 <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Pinterest.svg/1200px-Pinterest.svg.png" alt="Pinterest" /></a>
                             </div>
                         </div>
-                    </Col>
+                        <div className="product-extra-info mt-4">
+                            <ul style={{color:'gray'}}>
+                                <li>Được nâng cấp từ dòng gạo ST25</li>
+                                <li>
+                                    Kết hợp thêm nhiều dòng gạo dẻo thơm khác theo từng mùa vụ
+                                </li>
+                                <li>
+                                    Hạt gạo dài, dẻo vừa, thơm và trắng đều.
+                                </li>
+                                <li>
+                                    Khi nấu tỏa hương thơm lừng, cơm mềm dẻo, vị đậm đà.
+                                </li>
+                                <li>
+                                    Bảo quản: Để nơi khô ráo và thoáng mát, đậy kĩ bao bì sau khi sử dụng.
 
-                    {/* RIGHT COUPONS */}
-                    <Col md={4} className="coupon-column">
-                        <div className="coupon-list">
-                            {[
-                                { icon: "/images/home_coupon_1_img.png", title: "Miễn phí vận chuyển", desc: "Đơn hàng từ 300k", code: "FREE300", expiry: "10/12/2025" },
-                                { icon: "/images/home_coupon_2_img.png", title: "Giảm 20%", desc: "Đơn từ 200k", code: "SALE20", expiry: "10/12/2025" },
-                                { icon: "/images/home_coupon_3_img.png", title: "Giảm 50k", desc: "Đơn từ 500k", code: "DISCOUNT50", expiry: "10/12/2025" },
-                                { icon: "/images/home_coupon_4_img.png", title: "Giảm 10%", desc: "Đơn từ 100k", code: "HOT10", expiry: "10/12/2025" }
-                            ].map((coupon, index) => (
-                                <div className="coupon-item" key={index}>
-                                    <div className="coupon-left">
-                                        <img src={coupon.icon} alt={coupon.title} className="coupon-icon" />
-                                        <div>
-                                            <h4 className="coupon-title">{coupon.title}</h4>
-                                            <p className="coupon-description">{coupon.desc}</p>
-                                            <p className="coupon-code">Mã: {coupon.code}</p>
-                                            <p className="coupon-expiry">HSD: {coupon.expiry}</p>
-                                        </div>
-                                    </div>
-                                    <div className="coupon-right">
-                                        <button className="coupon-button">SAO CHÉP MÃ</button>
-                                    </div>
-                                </div>
-                            ))}
+                                </li>
+                                <li>
+                                    HSD: 1 năm kể từ ngày sản xuất.</li>
+                            </ul>
+                            <p><b>Xuất xứ:</b> Việt Nam</p>
+                            <p><b>HSD:</b> 1 năm kể từ ngày sản xuất</p>
+                            <p><b>Bảo quản:</b> Để nơi khô ráo và thoáng mát, đậy kín bao bì sau khi sử dụng.</p>
                         </div>
                     </Col>
+
+
                 </Row>
 
                 {/* BENEFITS */}
@@ -297,7 +295,7 @@ const ProductDetail = () => {
                 </Row>
 
                 {/* Swiper Related Products */}
-                <RelatedProducts category={product.category}/>
+                <RelatedProducts category={product.category} />
             </Container>
         </section>
     )

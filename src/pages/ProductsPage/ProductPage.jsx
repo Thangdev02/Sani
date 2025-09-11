@@ -94,7 +94,7 @@ const ProductPage = () => {
               <Button
                 variant={activeCategory === cat ? "danger" : "outline-secondary"}
                 onClick={() => setActiveCategory(cat)}
-                className="category-btn"
+                className="category-btn mb-3"
               >
                 {cat === "all" ? "Tất cả" : cat.charAt(0).toUpperCase() + cat.slice(1)}
               </Button>
