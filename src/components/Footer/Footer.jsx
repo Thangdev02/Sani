@@ -30,7 +30,7 @@ const Footer = () => {
         <p>
           Trụ sở: 151/24A Đường Tam Châu, Khu Phố 2, Phường Tam Bình, TP Hồ Chí Minh
         </p>
-        <p>Copyright © 2024 - Sani</p>
+        <p>Copyright © 2024 - <a style={{textDecoration:'none',color:'black'}} href="/loginsani">Sani</a> </p>
       </div>
     </footer>
   );

@@ -148,7 +148,7 @@ const ProductPage = () => {
                   viewport={{ once: true }}
                 >
                   <Card
-                    className="product-card h-100 shadow-sm"
+                    className="product-card  shadow-sm"
                     onClick={() => navigate(`/san-pham/${product.id}`)}
                     style={{ cursor: "pointer" }}
                   >
@@ -162,6 +162,7 @@ const ProductPage = () => {
                       src={product.image}
                       alt={product.name}
                       className="p-3"
+                      style={{ height: "300px", objectFit: "contain" }}
                     />
                     <Card.Body className="text-center">
                       <Card.Title className="product-name" style={{ fontSize: "1rem" }}>{product.name}</Card.Title>
