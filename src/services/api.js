@@ -6,7 +6,7 @@ const API_BASE_URL = "https://ads.eposh.io.vn/api/v1"
 
 export const loginLocal = async (username, password) => {
     // simple client-side check
-    if (username === "admin" && password === "admin") {
+    if (username === "admin" && password === "adminsani2025") {
       return { ok: true, user: { username: "admin", role: "admin" } };
     }
     return { ok: false, message: "Invalid credentials" };
