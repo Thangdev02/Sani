@@ -233,3 +233,10 @@ body {
   color: #d70018;
   border-bottom: 2px solid #d70018;
 }
+
+#language-dropdown .dropdown-toggle::after {
+  display: none !important; /* Ẩn mũi tên mặc định */
+}
+.no-caret .dropdown-toggle::after {
+  display: none !important;
+}

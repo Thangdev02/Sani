@@ -3,22 +3,24 @@ import { useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
+import { useTranslation } from "react-i18next"
 import "swiper/css"
 import "swiper/css/navigation"
 import "./NewsSection.css"
 
 // Import trực tiếp posts từ file data.js
-import { posts as allPosts } from "../../../api/data"  // nhớ điều chỉnh đường dẫn chính xác
+import { posts as allPosts } from "../../../api/data"
 
 const NewsSection = () => {
-  const [posts] = useState(allPosts) // không cần useEffect nữa
+  const { t } = useTranslation()
+  const [posts] = useState(allPosts)
 
   return (
     <section className="news-section py-5">
       <Container>
         <Row className="text-center mb-5">
           <Col>
-            <h2 className="section-title">Bài viết mới nhất</h2>
+            <h2 className="section-title">{t("latest_posts")}</h2>
             <div className="divider mx-auto"></div>
           </Col>
         </Row>
@@ -48,7 +50,7 @@ const NewsSection = () => {
                   <div className="news-footer d-flex justify-content-between align-items-center">
                     <span className="news-date">{post.date}</span>
                     <a href={post.link} className="news-more">
-                      Xem thêm
+                      {t("read_more")}
                     </a>
                   </div>
                 </div>

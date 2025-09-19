@@ -10,145 +10,146 @@ import InforImage5 from "../../assets/images/home_info_5_img.jpg"
 import InforImage6 from "../../assets/images/home_info_6_img.jpg"
 import InforImage7 from "../../assets/images/home_info_7_img.jpg"
 import InforImage8 from "../../assets/images/home_info_8_img.jpg"
+import { useTranslation } from "react-i18next"
 
 const ProductsSection = () => {
-    const leftValues = [
-        {
-            title: "Niềm đam mê",
-            desc: "Chúng tôi yêu thích công việc kinh doanh và các mặt hàng gia vị của mình.",
-            icon: InforImage1,
-        },
-        {
-            title: "Chất lượng cao",
-            desc: "Một điều rất quan trọng đối với chúng tôi là hạt tiêu không bị phun thuốc trừ sâu.",
-            icon: InforImage2,
-        },
-        {
-            title: "An toàn",
-            desc: "Một điều rất quan trọng đối với chúng tôi là hạt tiêu không bị phun thuốc trừ sâu.",
-            icon: InforImage3,
-        },
-        {
-            title: "Con người là trung tâm",
-            desc: "Chúng tôi quan tâm phát triển tinh thần đồng đội và nâng cao chất lượng sống của mỗi thành viên trong công ty.",
-            icon: InforImage4,
-        },
-    ]
+  const { t } = useTranslation()
 
-    const rightValues = [
-        {
-            title: "Gia vị hữu cơ",
-            desc: "100% Tiêu sọ hữu cơ, dùng làm gia vị trong các món ăn",
-            badge: InforImage5,
-        },
-        {
-            title: "Gia vị tự nhiên",
-            desc: "100% Tiêu sọ hữu cơ, dùng làm gia vị trong các món ăn",
-            badge: InforImage6,
-        },
-        {
-            title: "Gia vị kết hợp",
-            desc: "100% Tiêu sọ hữu cơ, dùng làm gia vị trong các món ăn",
-            badge: InforImage7,
-        },
-        {
-            title: "Lá gia vị",
-            desc: "100% Tiêu sọ hữu cơ, dùng làm gia vị trong các món ăn",
-            badge: InforImage8,
-        },
-    ]
+  const leftValues = [
+    {
+      title: t("left_1_title"),
+      desc: t("left_1_desc"),
+      icon: InforImage1,
+    },
+    {
+      title: t("left_2_title"),
+      desc: t("left_2_desc"),
+      icon: InforImage2,
+    },
+    {
+      title: t("left_3_title"),
+      desc: t("left_3_desc"),
+      icon: InforImage3,
+    },
+    {
+      title: t("left_4_title"),
+      desc: t("left_4_desc"),
+      icon: InforImage4,
+    },
+  ]
 
-    return (
-        <section className="core-values-section">
-            <Container>
-                <Row className="text-center mb-5">
-                    <Col>
-                        <motion.h6
-                            className="section-subtitle text-white"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            viewport={{ once: true }}
-                        >
-                            GIÁ TRỊ CỐT LÕI
-                        </motion.h6>
-                        <motion.h2
-                            className="section-title2 text-white"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
-                        >
-                            ĐIỀU QUAN TRỌNG NHẤT VỚI SANI
-                        </motion.h2>
-                        <div className="section-divider"></div>
-                    </Col>
-                </Row>
+  const rightValues = [
+    {
+      title: t("right_1_title"),
+      desc: t("right_1_desc"),
+      badge: InforImage5,
+    },
+    {
+      title: t("right_2_title"),
+      desc: t("right_2_desc"),
+      badge: InforImage6,
+    },
+    {
+      title: t("right_3_title"),
+      desc: t("right_3_desc"),
+      badge: InforImage7,
+    },
+    {
+      title: t("right_4_title"),
+      desc: t("right_4_desc"),
+      badge: InforImage8,
+    },
+  ]
 
-                <Row className="align-items-center">
-                    {/* Left values */}
-                    {/* Left values */}
-                    <Col md={4}>
-                        {leftValues.map((item, index) => (
-                            <motion.div
-                                key={index}
-                                className="value-item left"
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.2 }}
-                                viewport={{ once: true }}
-                            >
-                                <div className="value-text">
-                                    <h5>{item.title}</h5>
-                                    <p>{item.desc}</p>
-                                </div>
-                                <div  className="badge-circle">
-                                    <img src={item.icon} alt={item.title} className="badge-icon" />
-                                </div>
-                            </motion.div>
-                        ))}
-                    </Col>
+  return (
+    <section className="core-values-section">
+      <Container>
+        <Row className="text-center mb-5">
+          <Col>
+            <motion.h6
+              className="section-subtitle text-white"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              {t("core_values")}
+            </motion.h6>
+            <motion.h2
+              className="section-title2 text-white"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              {t("core_values_subtitle")}
+            </motion.h2>
+            <div className="section-divider"></div>
+          </Col>
+        </Row>
 
+        <Row className="align-items-center">
+          {/* Left values */}
+          <Col md={4}>
+            {leftValues.map((item, index) => (
+              <motion.div
+                key={index}
+                className="value-item left"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <div className="value-text">
+                  <h5>{item.title}</h5>
+                  <p>{item.desc}</p>
+                </div>
+                <div className="badge-circle">
+                  <img src={item.icon} alt={item.title} className="badge-icon" />
+                </div>
+              </motion.div>
+            ))}
+          </Col>
 
-                    {/* Center image */}
-                    <Col md={4} className="text-center">
-                        <motion.img
-                            src="/images/plant_rice.png"
-                            alt="Pepper Grinder"
-                            className="core-image"
-                            initial={{ opacity: 0, scale: 0.3 }}
-                            whileInView={{ opacity: 1, scale: 1.2 }}
-                            transition={{ duration: 1.4 }}
-                            viewport={{ once: true }}
-                            style={{marginBottom:'15%'}}
-                        />
-                    </Col>
+          {/* Center image */}
+          <Col md={4} className="text-center">
+            <motion.img
+              src="/images/plant_rice.png"
+              alt="Pepper Grinder"
+              className="core-image"
+              initial={{ opacity: 0, scale: 0.3 }}
+              whileInView={{ opacity: 1, scale: 1.2 }}
+              transition={{ duration: 1.4 }}
+              viewport={{ once: true }}
+              style={{ marginBottom: "15%" }}
+            />
+          </Col>
 
-                    {/* Right values */}
-                    <Col md={4}>
-                        {rightValues.map((item, index) => (
-                            <motion.div
-                                key={index}
-                                className="value-item right"
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.2 }}
-                                viewport={{ once: true }}
-                            >
-                                <div className="badge-circle">
-                                    <img src={item.badge} alt={item.title} className="badge-icon" />
-                                </div>
-                                <div>
-                                    <h5>{item.title}</h5>
-                                    <p>{item.desc}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-    )
+          {/* Right values */}
+          <Col md={4}>
+            {rightValues.map((item, index) => (
+              <motion.div
+                key={index}
+                className="value-item right"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <div className="badge-circle">
+                  <img src={item.badge} alt={item.title} className="badge-icon" />
+                </div>
+                <div>
+                  <h5>{item.title}</h5>
+                  <p>{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </Col>
+        </Row>
+      </Container>
+    </section>
+  )
 }
 
 export default ProductsSection

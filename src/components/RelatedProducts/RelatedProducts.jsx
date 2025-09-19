@@ -7,18 +7,32 @@ import "swiper/css/navigation"
 import { useNavigate } from "react-router-dom"
 import "./RelatedProducts.css"
 
-// Import trực tiếp data
-import { products as allProducts } from "../../../api/data"
-
-const RelatedProducts = ({ category }) => {
+// ✅ dùng fetch API
+const RelatedProducts = ({ category, language = "vi" }) => {
   const [products, setProducts] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Lọc trực tiếp từ data.js
-    const filtered = allProducts.filter(p => p.category === category)
-    setProducts(filtered)
-  }, [category])
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(
+          `https://ads.eposh.io.vn/api/v1/products?pageNumber=1&pageSize=20&language=${language}`
+        )
+        const data = await res.json()
+        if (data && data.items) {
+          // lọc theo category
+          const filtered = data.items.filter(
+            (p) => p.category === category
+          )
+          setProducts(filtered)
+        }
+      } catch (error) {
+        console.error("Lỗi khi tải sản phẩm:", error)
+      }
+    }
+
+    fetchProducts()
+  }, [category, language])
 
   const handleClick = (id) => {
     navigate(`/san-pham/${id}`)

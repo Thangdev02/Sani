@@ -1,15 +1,19 @@
-import React from "react";
-import "./Newsletter.css";
+"use client"
+import React from "react"
+import { useTranslation } from "react-i18next"
+import "./Newsletter.css"
 
 const Newsletter = () => {
+  const { t } = useTranslation()
+
   return (
     <section className="newsletter-section">
       <div className="newsletter-container">
         <p className="newsletter-subtitle">
-          Để cập nhật những sản phẩm mới, nhận thông tin ưu đãi đặc biệt và thông tin giảm giá khác.
+          {t("newsletter.subtitle")}
         </p>
 
-        <h2 className="newsletter-title">Đăng ký nhận bản tin</h2>
+        <h2 className="newsletter-title">{t("newsletter.title")}</h2>
 
         <div className="newsletter-line">
           <span></span>
@@ -20,17 +24,17 @@ const Newsletter = () => {
             <span className="newsletter-icon">📧</span>
             <input
               type="email"
-              placeholder="Nhập email của bạn"
+              placeholder={t("newsletter.placeholder")}
               className="newsletter-input"
             />
           </div>
           <button type="submit" className="newsletter-button">
-            ĐĂNG KÝ
+            {t("newsletter.button")}
           </button>
         </form>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Newsletter;
+export default Newsletter

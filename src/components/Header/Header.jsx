@@ -1,116 +1,114 @@
-"use client"
-
-import { useState } from "react"
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap"
-import { LinkContainer } from "react-router-bootstrap"
-import { motion } from "framer-motion"
-import "./Header.css"
-import { Search } from "react-bootstrap-icons"
+import { useState } from "react";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { motion } from "framer-motion";
+import { Search, Person } from "react-bootstrap-icons"; // 👈 thêm Person
+import "./Header.css";
+import { useLanguage } from "../../LanguageContext";
+import i18n from "../../i18n";
+import { useTranslation } from "react-i18next"; // 👈 dịch text
 
 const menuItems = [
-    { title: "Trang chủ", path: "/" },
-    { title: "Sản phẩm", path: "/san-pham" },
-    { title: "Giới thiệu", path: "/gioi-thieu" },
-    { title: "Tin tức - Bài viết", path: "/tin-tuc" },
-    { title: "Liên hệ", path: "/lien-he" },
-]
+  { key: "home", path: "/" },
+  { key: "products", path: "/san-pham" },
+  { key: "about", path: "/gioi-thieu" },
+  { key: "news", path: "/tin-tuc" },
+  { key: "contact", path: "/lien-he" },
+];
+
+const languages = [
+  { code: "vi", label: "Tiếng Việt", flag: "/images/Vietnamf.jpg" },
+  { code: "en", label: "English", flag: "/images/usa.png" },
+];
 
 const Header = () => {
-    const [expanded, setExpanded] = useState(false)
-    const [language, setLanguage] = useState("vi") // mặc định tiếng Việt
+  const [expanded, setExpanded] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation(); // 👈 dịch menu
 
-    const languages = [
-        { code: "vi", label: "Tiếng Việt", flag: "/images/Vietnamf.jpg" },
-        { code: "en", label: "English", flag: "/images/usa.png" },
-    ]
+  return (
+    <motion.div initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
+      <Navbar
+        bg="white"
+        expand="lg"
+        className="main-navbar shadow-sm"
+        expanded={expanded}
+        onToggle={setExpanded}
+      >
+        <Container>
+          <LinkContainer to="/">
+            <Navbar.Brand>
+              <motion.img
+                whileHover={{ scale: 1.05 }}
+                src="/images/saniLogo.png"
+                alt="Logo"
+                height="40"
+              />
+            </Navbar.Brand>
+          </LinkContainer>
 
-    return (
-        <div>
-            <motion.div initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
-                <Navbar
-                    bg="white"
-                    expand="lg"
-                    className="main-navbar shadow-sm"
-                    expanded={expanded}
-                    onToggle={setExpanded}
-                >
-                    <Container>
-                        <LinkContainer to="/">
-                            <Navbar.Brand className="brand-logo">
-                                <motion.img
-                                    whileHover={{ scale: 1.05 }}
-                                    src="/images/saniLogo.png"
-                                    alt="Logo"
-                                    className="logo-img"
-                                    height="40"
-                                />
-                            </Navbar.Brand>
-                        </LinkContainer>
+          <Navbar.Toggle onClick={() => setExpanded(!expanded)} />
 
-                        <Navbar.Toggle
-                            aria-controls="basic-navbar-nav"
-                            onClick={() => setExpanded(!expanded)}
-                        />
+          <Navbar.Collapse>
+            <Nav className="mx-auto">
+              {menuItems.map((item) => (
+                <LinkContainer to={item.path} key={item.key}>
+                  <Nav.Link>{t(`menu.${item.key}`)}</Nav.Link>
+                </LinkContainer>
+              ))}
+            </Nav>
 
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="mx-auto">
-                                {menuItems.map((item) =>
-                                    <LinkContainer to={item.path} key={item.title}>
-                                        <Nav.Link className="nav-item-custom">{item.title}</Nav.Link>
-                                    </LinkContainer>
-                                )}
-                            </Nav>
+            <div className="d-flex align-items-center">
+              {/* 🔍 Search */}
+              <motion.button className="btn-icon me-3">
+                <Search size={20} />
+              </motion.button>
 
-                            {/* Language Dropdown */}
-                            <div className="navbar-actions d-flex align-items-center">
-                            <motion.button
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="btn-icon me-3"
-                                >
-                                    <Search size={20} />
-                                </motion.button>
-                                <NavDropdown
-                                    title={
-                                        <span className="d-flex align-items-center">
-                                            <img
-                                                src={languages.find(l => l.code === language)?.flag}
-                                                alt="flag"
-                                                width="24"
-                                                height="14"
-                                                className="me-2"
-                                            />
-                                            {languages.find(l => l.code === language)?.label}
-                                        </span>
-                                    }
-                                    id="language-dropdown"
-                                    align="end"
-                                    className="lang-dropdown"
-                                >
-                                    {languages.map((lang) => (
-                                        <NavDropdown.Item
-                                            key={lang.code}
-                                            onClick={() => setLanguage(lang.code)}
-                                            className="d-flex align-items-center"
-                                        >
-                                            <img
-                                                src={lang.flag}
-                                                alt={lang.label}
-                                                width="20"
-                                                height="14"
-                                                className="me-2"
-                                            />
-                                            {lang.label}
-                                        </NavDropdown.Item>
-                                    ))}
-                                </NavDropdown>
-                            </div>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
-            </motion.div>
-        </div>
-    )
-}
+              {/* 👤 Login */}
+              {/* <LinkContainer to="/login">
+                <motion.button className="btn-icon me-3">
+                  <Person size={22} />
+                </motion.button>
+              </LinkContainer> */}
 
-export default Header
+              {/* 🌐 Language Switcher */}
+              <NavDropdown
+  title={
+    <span className="d-flex align-items-center">
+      <img
+        src={languages.find((l) => l.code === language)?.flag}
+        width="24"
+        height="14"
+        className="me-2"
+        alt="flag"
+      />
+      {languages.find((l) => l.code === language)?.label}
+    </span>
+  }
+  id="language-dropdown"
+  align="end"
+  className="no-caret" // 👈 thêm class
+>
+  {languages.map((lang) => (
+    <NavDropdown.Item
+      key={lang.code}
+      onClick={() => {
+        setLanguage(lang.code);
+        i18n.changeLanguage(lang.code);
+      }}
+    >
+      <img src={lang.flag} width="20" height="14" className="me-2" alt="flag" />
+      {lang.label}
+    </NavDropdown.Item>
+  ))}
+</NavDropdown>
+
+            </div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </motion.div>
+  );
+};
+
+export default Header;

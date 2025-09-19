@@ -1,0 +1,54 @@
+/* Sidebar */
+.admin-main {
+    margin-left: 240px; /* đúng bằng width của sidebar */
+    width: calc(100% - 240px);
+  }
+  
+.admin-sidebar {
+    width: 240px;
+    background: #0f3c2e; /* xanh đậm từ logo */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
+  
+  .admin-sidebar h4 {
+    font-weight: 700;
+    margin: 0;
+    color: #e94e1b;
+  }
+  
+  .nav-link1{
+    color: #e94e1b;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 4%;
+  }
+  .admin-sidebar .nav-link1.active {
+    background: #e94e1b;
+    color: #fff;
+  }
+  
+  .admin-sidebar .nav-link:hover {
+    background: rgba(233, 78, 27, 0.15);
+    color: #fff;
+  }
+  
+  /* Header */
+  .admin-header {
+    background: #fff;
+    border-bottom: 2px solid #e94e1b;
+  }
+  
+  .admin-header h5 {
+    color: #0f3c2e;
+    font-weight: 700;
+  }
+  .admin-content{
+  }
+  

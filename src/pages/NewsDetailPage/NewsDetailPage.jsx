@@ -1,29 +1,57 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
-import { motion } from "framer-motion";
-import "./NewsDetailPage.css";
-import RelatedPosts from "../../components/RelatedPosts/RelatedPosts";
-import RelatedDetailPosts from "../../components/RelatedDetailPosts/RelatedDetailPosts";
-import { posts as allPosts } from "../../../api/data"; // <-- import trực tiếp
+"use client"
+import React, { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { Container, Row, Col } from "react-bootstrap"
+import { motion } from "framer-motion"
+import "./NewsDetailPage.css"
+import RelatedPosts from "../../components/RelatedPosts/RelatedPosts"
+import RelatedDetailPosts from "../../components/RelatedDetailPosts/RelatedDetailPosts"
 
 const NewsDetail = () => {
-  const { id } = useParams();
-  const [post, setPost] = useState(null);
-  const [related, setRelated] = useState([]);
+  const { id } = useParams()
+  const [post, setPost] = useState(null)
+  const [sections, setSections] = useState([])
+  const [related, setRelated] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const currentPost = allPosts.find(p => p.id === id);
-    setPost(currentPost);
-  
-    const relatedPosts = allPosts
-      .filter(p => p.id !== id)
-      .slice(0, 3);
-    setRelated(relatedPosts);
-  }, [id]);
-  
+    const fetchPostAndSections = async () => {
+      try {
+        // 1. Lấy danh sách tất cả bài viết
+        const res = await fetch(
+          "https://ads.eposh.io.vn/api/v1/posts?pageNumber=1&pageSize=10&language=vi"
+        )
+        const data = await res.json()
+        const items = data.data.items || []
 
-  if (!post) return <p className="loading">Đang tải bài viết...</p>;
+        // 2. Lấy post hiện tại theo id
+        const currentPost = items.find(p => p.id === id)
+        setPost(currentPost)
+
+        // 3. Lấy các bài viết liên quan
+        const relatedPosts = items.filter(p => p.id !== id).slice(0, 3)
+        setRelated(relatedPosts)
+
+        // 4. Nếu có post thì gọi API sections
+        if (currentPost) {
+          const secRes = await fetch(
+            `https://ads.eposh.io.vn/api/v1/sections?postId=${currentPost.id}&pageNumber=1&pageSize=10&language=vi`
+          )
+          const secData = await secRes.json()
+          setSections(secData.data.items || [])
+        }
+      } catch (error) {
+        console.error("Lỗi khi load bài viết:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPostAndSections()
+  }, [id])
+
+  if (loading) return <p className="loading">Đang tải bài viết...</p>
+  if (!post) return <p className="loading">Không tìm thấy bài viết</p>
 
   return (
     <Container className="news-detail my-5" style={{ fontFamily: "Monserrat" }}>
@@ -50,9 +78,10 @@ const NewsDetail = () => {
             />
           </motion.div>
 
-          {post.sections.map((sec, idx) => (
+          {/* render sections */}
+          {sections.map((sec, idx) => (
             <motion.div
-              key={idx}
+              key={sec.id}
               className="detail-section mb-5"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -84,12 +113,13 @@ const NewsDetail = () => {
             <RelatedPosts posts={related} title="Bài viết liên quan" showIndex={false} />
           </motion.div>
         </Col>
+
         <div className="related-section mt-5">
           <RelatedDetailPosts posts={related} />
         </div>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default NewsDetail;
+export default NewsDetail

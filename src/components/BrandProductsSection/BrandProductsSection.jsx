@@ -8,15 +8,18 @@ import "./BrandProductsSection.css"
 
 // ✅ Import trực tiếp data từ data.js
 import { products as allProducts } from "../../../api/data"
+import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
 
 const BrandProductsSection = () => {
-  const products = allProducts // Không cần useState/useEffect nữa
+  const { t } = useTranslation()
+  const products = allProducts
 
   return (
     <section className="brand-products-section py-5">
       <Container>
-        <p className="section-subtitle">Sản phẩm nổi bật</p>
-        <h2 className="text-green-title">NHÃN HÀNG RIÊNG CỦA CHÚNG TÔI</h2>
+        <p className="section-subtitle">{t("featured_products")}</p>
+        <h2 className="text-green-title">{t("our_private_brand")}</h2>
         <div className="divider mb-4"></div>
 
         {/* Swiper */}
@@ -36,9 +39,7 @@ const BrandProductsSection = () => {
             <SwiperSlide key={idx}>
               <div className="product-card">
                 {product.discount && (
-                  <span className="badge-discount">
-                    -{product.discount}%
-                  </span>
+                  <span className="badge-discount">-{product.discount}%</span>
                 )}
                 <img
                   src={product.image}
@@ -59,7 +60,7 @@ const BrandProductsSection = () => {
 
         <div className="text-center mt-4">
           <button className="btn-view-all">
-            XEM TẤT CẢ NHÃN HÀNG RIÊNG CỦA CHÚNG TÔI
+            <Link style={{ textDecoration: "none", color: "inherit" }} to="/san-pham">{t("view_all_private_brand")}</Link> 
           </button>
         </div>
       </Container>

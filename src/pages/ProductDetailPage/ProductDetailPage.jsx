@@ -5,15 +5,18 @@ import { Container, Row, Col } from "react-bootstrap"
 import { motion } from "framer-motion"
 import "./ProductDetailPage.css"
 import RelatedProducts from "../../components/RelatedProducts/RelatedProducts"
-import { products as allProducts } from "../../../api/data" // import data trực tiếp
+import { getProducts } from "../../services/api"
+import { useLanguage } from "../../LanguageContext"
 
 const ProductDetail = () => {
     const { id } = useParams()
+    const { language } = useLanguage()
     const [product, setProduct] = useState(null)
     const [relatedProducts, setRelatedProducts] = useState([])
     const [activeTab, setActiveTab] = useState("description")
     const [activeIndex, setActiveIndex] = useState(null)
     const [showAll, setShowAll] = useState(false)
+    
 
     const faqs = [
         {
@@ -47,19 +50,25 @@ const ProductDetail = () => {
             answer: "Bạn có thể đổi sản phẩm trong vòng 7 ngày kể từ ngày mua, với điều kiện sản phẩm chưa sử dụng và còn nguyên bao bì.",
         },
     ]
-
     useEffect(() => {
-        // Tìm product theo string id
-        const prod = allProducts.find(p => p.id === id)
-        if (prod) {
+        const fetchData = async () => {
+          try {
+            const all = await getProducts(1, 50, language)
+            const prod = all.find((p) => String(p.id) === id)
             setProduct(prod)
-            setRelatedProducts(
-                allProducts.filter(p => p.category === prod.category && p.id !== prod.id)
-            )
+    
+            if (prod) {
+              const related = all.filter((p) => p.category === prod.category && p.id !== prod.id)
+              setRelatedProducts(related)
+            }
+          } catch (err) {
+            console.error("Error fetching product:", err)
+          }
         }
-    }, [id])
-
-    if (!product) return <p>Đang tải...</p>
+        fetchData()
+      }, [id, language])
+    
+      if (!product) return <p>Đang tải...</p>
 
     return (
         <section className="product-detail-page">
@@ -81,7 +90,7 @@ const ProductDetail = () => {
                     <Col md={6}>
                         <h2 className="product-title">{product.name}</h2>
                         <p className="product-description">
-                            {product.shortDescription || "Combo Muối Hồng Himalaya Xay Nhuyễn 1.1kg + Muối Hồng Nguyên Hạt 120gr"}
+                            {/* {product.shortDescription || "Combo Muối Hồng Himalaya Xay Nhuyễn 1.1kg + Muối Hồng Nguyên Hạt 120gr"} */}
                         </p>
                         <p className="product-status">
                             Tình trạng: <b style={{ color: "green" }}>Còn hàng</b>
@@ -101,7 +110,7 @@ const ProductDetail = () => {
                             </div>
                         </div>
                         <div className="product-extra-info mt-4">
-                            <ul style={{color:'gray'}}>
+                            {/* <ul style={{color:'gray'}}>
                                 <li>Được nâng cấp từ dòng gạo ST25</li>
                                 <li>
                                     Kết hợp thêm nhiều dòng gạo dẻo thơm khác theo từng mùa vụ
@@ -118,7 +127,7 @@ const ProductDetail = () => {
                                 </li>
                                 <li>
                                     HSD: 1 năm kể từ ngày sản xuất.</li>
-                            </ul>
+                            </ul> */}
                             <p><b>Xuất xứ:</b> Việt Nam</p>
                             <p><b>HSD:</b> 1 năm kể từ ngày sản xuất</p>
                             <p><b>Bảo quản:</b> Để nơi khô ráo và thoáng mát, đậy kín bao bì sau khi sử dụng.</p>
