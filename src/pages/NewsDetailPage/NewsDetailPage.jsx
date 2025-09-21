@@ -80,28 +80,39 @@ const NewsDetail = () => {
 
           {/* render sections */}
           {sections.map((sec, idx) => (
-            <motion.div
-              key={sec.id}
-              className="detail-section mb-5"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: idx * 0.2 }}
-            >
-              <h4>{sec.heading}</h4>
-              <p>{sec.content}</p>
-              {sec.image && (
-                <motion.img
-                  src={sec.image}
-                  alt={sec.heading}
-                  className="img-fluid rounded mt-3"
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6 }}
-                />
-              )}
-            </motion.div>
-          ))}
+  <motion.div
+    key={sec.id}
+    className="detail-section mb-5"
+    initial={{ opacity: 0, x: -30 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{ duration: 0.6, delay: idx * 0.2 }}
+  >
+    <h4>{sec.heading}</h4>
+
+    {/* render HTML từ Quill */}
+    <div
+      className="section-content"
+      dangerouslySetInnerHTML={{ __html: sec.content }}
+    />
+
+    {sec.image && (
+      <motion.img
+        src={
+          sec.image.startsWith("http")
+            ? sec.image
+            : `https://ads.eposh.io.vn/${sec.image}`
+        }
+        alt={sec.heading}
+        className="img-fluid rounded mt-3"
+        initial={{ scale: 0.9, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      />
+    )}
+  </motion.div>
+))}
+
         </Col>
 
         <Col md={4}>

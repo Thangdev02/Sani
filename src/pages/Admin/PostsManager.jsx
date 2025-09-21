@@ -8,6 +8,10 @@ import {
   Form,
   Spinner,
 } from "react-bootstrap";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
+import axios from "axios";
+
 import {
   getPosts,
   createPost,
@@ -18,6 +22,36 @@ import {
   updateSection,
   deleteSection,
 } from "../../services/api";
+
+// ✅ Hàm upload ảnh
+const uploadImage = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("Folder", "PostImage"); // theo swagger
+
+  const res = await axios.post(
+    "https://ads.eposh.io.vn/api/v1/uploads/upload",
+    formData,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+    }
+  );
+
+  let data = res.data;
+  if (typeof data === "string") {
+    try {
+      data = JSON.parse(data);
+    } catch {
+      throw new Error("Upload response is not JSON");
+    }
+  }
+
+  if (data?.filePath) {
+    return `https://ads.eposh.io.vn/${data.filePath}`;
+  } else {
+    throw new Error("Upload ảnh thất bại!");
+  }
+};
 
 export default function PostsManager() {
   // ================== POSTS ==================
@@ -111,11 +145,6 @@ export default function PostsManager() {
     }
   };
 
-  const openCreateSection = () => {
-    setEditingSection(null);
-    setSectionForm(emptySection);
-  };
-
   const openEditSection = (section) => {
     setEditingSection(section);
     setSectionForm(section);
@@ -183,7 +212,15 @@ export default function PostsManager() {
                 <td>{p.date}</td>
                 <td>
                   {p.image && (
-                    <img src={p.image} alt="" style={{ width: 60 }} />
+                    <img
+                      src={
+                        p.image.startsWith("http")
+                          ? p.image
+                          : `https://ads.eposh.io.vn/${p.image}`
+                      }
+                      alt=""
+                      style={{ width: 60 }}
+                    />
                   )}
                 </td>
                 <td>
@@ -258,11 +295,28 @@ export default function PostsManager() {
               />
             </Form.Group>
             <Form.Group className="mb-2">
-              <Form.Label>Ảnh (URL)</Form.Label>
+              <Form.Label>Ảnh</Form.Label>
               <Form.Control
-                value={form.image}
-                onChange={(e) => setForm({ ...form, image: e.target.value })}
+                type="file"
+                onChange={async (e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    try {
+                      const url = await uploadImage(file);
+                      setForm({ ...form, image: url });
+                    } catch (err) {
+                      alert("Upload ảnh thất bại!");
+                    }
+                  }
+                }}
               />
+              {form.image && (
+                <img
+                  src={form.image}
+                  alt="preview"
+                  style={{ width: 100, marginTop: 10 }}
+                />
+              )}
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -300,23 +354,38 @@ export default function PostsManager() {
               />
             </Form.Group>
             <Form.Group className="mb-2">
-              <Form.Label>Ảnh (URL)</Form.Label>
+              <Form.Label>Ảnh</Form.Label>
               <Form.Control
-                value={sectionForm.image}
-                onChange={(e) =>
-                  setSectionForm({ ...sectionForm, image: e.target.value })
-                }
+                type="file"
+                onChange={async (e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    try {
+                      const url = await uploadImage(file);
+                      setSectionForm({ ...sectionForm, image: url });
+                    } catch (err) {
+                      alert("Upload ảnh thất bại!");
+                    }
+                  }
+                }}
               />
+              {sectionForm.image && (
+                <img
+                  src={sectionForm.image}
+                  alt="preview"
+                  style={{ width: 100, marginTop: 10 }}
+                />
+              )}
             </Form.Group>
             <Form.Group className="mb-2">
               <Form.Label>Nội dung</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
+              <ReactQuill
+                theme="snow"
                 value={sectionForm.content}
-                onChange={(e) =>
-                  setSectionForm({ ...sectionForm, content: e.target.value })
+                onChange={(val) =>
+                  setSectionForm({ ...sectionForm, content: val })
                 }
+                style={{ height: "200px", marginBottom: "40px" }}
               />
             </Form.Group>
           </Form>
@@ -345,10 +414,23 @@ export default function PostsManager() {
                   <td>{s.heading}</td>
                   <td>
                     {s.image && (
-                      <img src={s.image} alt="" style={{ width: 60 }} />
+                      <img
+                        src={
+                          s.image.startsWith("http")
+                            ? s.image
+                            : `https://ads.eposh.io.vn/${s.image}`
+                        }
+                        alt=""
+                        style={{ width: 60 }}
+                      />
                     )}
                   </td>
-                  <td>{s.content}</td>
+                  <td>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: s.content }}
+                      style={{ maxWidth: 300 }}
+                    />
+                  </td>
                   <td>
                     <Button
                       size="sm"

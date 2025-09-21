@@ -50,7 +50,7 @@ const Header = () => {
           <Navbar.Toggle onClick={() => setExpanded(!expanded)} />
 
           <Navbar.Collapse>
-            <Nav className="mx-auto">
+            <Nav className="mx-auto" style={{ gap: "1rem" }}>
               {menuItems.map((item) => (
                 <LinkContainer to={item.path} key={item.key}>
                   <Nav.Link>{t(`menu.${item.key}`)}</Nav.Link>

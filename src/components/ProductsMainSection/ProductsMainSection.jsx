@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import "./ProductsMainSection.css"
 import { getProducts } from "../../services/api"
+import { Link } from "react-router-dom"
 
 const ProductsMainSection = () => {
   const { t } = useTranslation()
@@ -88,6 +89,7 @@ const ProductsMainSection = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
+                  <Link style={{ textDecoration: "none" }} to={`/san-pham/${product.id}`}>
                   <Card className="product-card shadow-sm" style={{ height: "600px" }}>
                     {/* discount badge */}
                     {product.discount && (
@@ -101,6 +103,7 @@ const ProductsMainSection = () => {
                       src={product.image}
                       alt={product.name}
                       className="p-3"
+                       style={{ height: "400px" }}
                     />
                     <Card.Body className="text-center">
                       <Card.Title className="product-name">{product.name}</Card.Title>
@@ -116,6 +119,7 @@ const ProductsMainSection = () => {
                       </Card.Text>
                     </Card.Body>
                   </Card>
+                  </Link>
                 </motion.div>
               </Col>
             ))

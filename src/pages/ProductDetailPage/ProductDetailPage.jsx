@@ -13,10 +13,10 @@ const ProductDetail = () => {
     const { language } = useLanguage()
     const [product, setProduct] = useState(null)
     const [relatedProducts, setRelatedProducts] = useState([])
-    const [activeTab, setActiveTab] = useState("description")
+    const [activeTab, setActiveTab] = useState("policy")
     const [activeIndex, setActiveIndex] = useState(null)
     const [showAll, setShowAll] = useState(false)
-    
+
 
     const faqs = [
         {
@@ -52,23 +52,23 @@ const ProductDetail = () => {
     ]
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const all = await getProducts(1, 50, language)
-            const prod = all.find((p) => String(p.id) === id)
-            setProduct(prod)
-    
-            if (prod) {
-              const related = all.filter((p) => p.category === prod.category && p.id !== prod.id)
-              setRelatedProducts(related)
+            try {
+                const all = await getProducts(1, 50, language)
+                const prod = all.find((p) => String(p.id) === id)
+                setProduct(prod)
+
+                if (prod) {
+                    const related = all.filter((p) => p.category === prod.category && p.id !== prod.id)
+                    setRelatedProducts(related)
+                }
+            } catch (err) {
+                console.error("Error fetching product:", err)
             }
-          } catch (err) {
-            console.error("Error fetching product:", err)
-          }
         }
         fetchData()
-      }, [id, language])
-    
-      if (!product) return <p>Đang tải...</p>
+    }, [id, language])
+
+    if (!product) return <p>Đang tải...</p>
 
     return (
         <section className="product-detail-page">
@@ -110,27 +110,13 @@ const ProductDetail = () => {
                             </div>
                         </div>
                         <div className="product-extra-info mt-4">
-                            {/* <ul style={{color:'gray'}}>
-                                <li>Được nâng cấp từ dòng gạo ST25</li>
-                                <li>
-                                    Kết hợp thêm nhiều dòng gạo dẻo thơm khác theo từng mùa vụ
-                                </li>
-                                <li>
-                                    Hạt gạo dài, dẻo vừa, thơm và trắng đều.
-                                </li>
-                                <li>
-                                    Khi nấu tỏa hương thơm lừng, cơm mềm dẻo, vị đậm đà.
-                                </li>
-                                <li>
-                                    Bảo quản: Để nơi khô ráo và thoáng mát, đậy kĩ bao bì sau khi sử dụng.
-
-                                </li>
-                                <li>
-                                    HSD: 1 năm kể từ ngày sản xuất.</li>
-                            </ul> */}
-                            <p><b>Xuất xứ:</b> Việt Nam</p>
+                        <div
+                                        className="description-content"
+                                        dangerouslySetInnerHTML={{ __html: product.description || "<p>Chưa có mô tả chi tiết cho sản phẩm này.</p>" }}
+                                    />
+                            {/* <p><b>Xuất xứ:</b> Việt Nam</p>
                             <p><b>HSD:</b> 1 năm kể từ ngày sản xuất</p>
-                            <p><b>Bảo quản:</b> Để nơi khô ráo và thoáng mát, đậy kín bao bì sau khi sử dụng.</p>
+                            <p><b>Bảo quản:</b> Để nơi khô ráo và thoáng mát, đậy kín bao bì sau khi sử dụng.</p> */}
                         </div>
                     </Col>
 
@@ -160,9 +146,6 @@ const ProductDetail = () => {
                     <Col md={8}>
                         <div className="tab-section">
                             <div className="tab-header">
-                                <button className={activeTab === "description" ? "active" : ""} onClick={() => setActiveTab("description")}>
-                                    Mô tả sản phẩm
-                                </button>
                                 <button className={activeTab === "policy" ? "active" : ""} onClick={() => setActiveTab("policy")}>
                                     Chính sách đổi trả
                                 </button>
@@ -175,116 +158,28 @@ const ProductDetail = () => {
                             </div>
 
                             <div className="tab-content">
-                                {activeTab === "description" && (
-                                    <div>
-                                        <p>{product.description || "Chưa có mô tả chi tiết cho sản phẩm này."}</p>
-                                    </div>
-                                )}
-
                                 {activeTab === "policy" && (
-                                    <div className="policy-content">
-                                        <h4>1. Điều kiện đổi trả</h4>
-                                        <p>
-                                            Quý Khách hàng cần kiểm tra tình trạng hàng hóa và có thể đổi hàng/ trả lại hàng ngay tại thời điểm
-                                            giao/nhận hàng trong những trường hợp sau:
-                                        </p>
-                                        <ul>
-                                            <li>Hàng không đúng chủng loại, mẫu mã trong đơn hàng đã đặt hoặc như trên website tại thời điểm đặt hàng.</li>
-                                            <li>Không đủ số lượng, không đủ bộ như trong đơn hàng.</li>
-                                            <li>Tình trạng bên ngoài bị ảnh hưởng như rách bao bì, bong tróc, bể vỡ...</li>
-                                        </ul>
-                                        <p>
-                                            Khách hàng có trách nhiệm trình giấy tờ liên quan chứng minh sự thiếu sót trên để hoàn thành việc hoàn trả/đổi trả hàng hóa.
-                                        </p>
-
-                                        <h4>2. Quy định về thời gian thông báo và gửi sản phẩm đổi trả</h4>
-                                        <ul>
-                                            <li>
-                                                <b>Thời gian thông báo đổi trả:</b> trong vòng 48h kể từ khi nhận sản phẩm đổi với trường hợp sản phẩm thiếu phụ kiện, quà tặng hoặc bể vỡ.
-                                            </li>
-                                            <li>
-                                                <b>Thời gian gửi chuyển trả sản phẩm:</b> trong vòng 14 ngày kể từ khi nhận sản phẩm.
-                                            </li>
-                                            <li>
-                                                <b>Địa điểm đổi trả sản phẩm:</b> Khách hàng có thể mang hàng trực tiếp đến văn phòng/ cửa hàng của chúng tôi hoặc chuyển qua đường bưu điện.
-                                            </li>
-                                        </ul>
-
-                                        <p>
-                                            Trong trường hợp Quý Khách hàng có ý kiến đóng góp/ khiếu nại liên quan đến chất lượng sản phẩm,
-                                            Quý Khách hàng vui lòng liên hệ đường dây chăm sóc khách hàng của chúng tôi.
-                                        </p>
-                                    </div>
+                                    <div
+                                        className="policy-content"
+                                        dangerouslySetInnerHTML={{ __html: product.returnPolicy || "<p>Chưa có chính sách đổi trả.</p>" }}
+                                    />
                                 )}
 
                                 {activeTab === "terms" && (
-                                    <div className="terms-content">
-                                        <h4>1. Giới thiệu</h4>
-                                        <p>
-                                            Chào mừng quý khách hàng đến với website chúng tôi.
-                                        </p>
-                                        <p>
-                                            Khi quý khách hàng truy cập vào trang website của chúng tôi có nghĩa là quý khách đồng ý với các điều khoản này.
-                                            Trang web có quyền thay đổi, chỉnh sửa, thêm hoặc lược bỏ bất kỳ phần nào trong Điều khoản mua bán hàng hóa này,
-                                            vào bất cứ lúc nào. Các thay đổi có hiệu lực ngay khi được đăng trên trang web mà không cần thông báo trước.
-                                            Và khi quý khách tiếp tục sử dụng trang web, sau khi các thay đổi về Điều khoản này được đăng tải, có nghĩa là
-                                            quý khách chấp nhận với những thay đổi đó.
-                                        </p>
-                                        <p>
-                                            Quý khách hàng vui lòng kiểm tra thường xuyên để cập nhật những thay đổi của chúng tôi.
-                                        </p>
-
-                                        <h4>2. Hướng dẫn sử dụng website</h4>
-                                        <p>
-                                            Khi vào web của chúng tôi, khách hàng phải đảm bảo đủ 18 tuổi, hoặc truy cập dưới sự giám sát của cha mẹ
-                                            hay người giám hộ hợp pháp. Khách hàng đảm bảo có đầy đủ hành vi dân sự để thực hiện các giao dịch
-                                            mua bán hàng hóa theo quy định hiện hành của pháp luật Việt Nam.
-                                        </p>
-                                        <p>
-                                            Trong suốt quá trình đăng ký, quý khách đồng ý nhận email quảng cáo từ website. Nếu không muốn tiếp tục
-                                            nhận mail, quý khách có thể từ chối bằng cách nhấp vào đường link ở dưới cùng trong mọi email quảng cáo.
-                                        </p>
-
-                                        <h4>3. Thanh toán an toàn và tiện lợi</h4>
-                                        <p>Người mua có thể tham khảo các phương thức thanh toán sau đây và lựa chọn áp dụng phương thức phù hợp:</p>
-                                        <ul>
-                                            <li>Cách 1: Thanh toán trực tiếp (người mua nhận hàng tại địa chỉ người bán)</li>
-                                            <li>Cách 2: Thanh toán sau (COD – giao hàng và thu tiền tận nơi)</li>
-                                            <li>Cách 3: Thanh toán online qua thẻ tín dụng, chuyển khoản</li>
-                                        </ul>
-                                    </div>
+                                    <div
+                                        className="terms-content"
+                                        dangerouslySetInnerHTML={{ __html: product.termsOfService || "<p>Chưa có điều khoản dịch vụ.</p>" }}
+                                    />
                                 )}
 
                                 {activeTab === "faq" && (
-                                    <div className="faq-section">
-                                        {(showAll ? faqs : faqs.slice(0, 3)).map((faq, index) => (
-                                            <div key={index} className="faq-item">
-                                                <div
-                                                    className="faq-question"
-                                                    onClick={() =>
-                                                        setActiveIndex(activeIndex === index ? null : index)
-                                                    }
-                                                >
-                                                    <span>{faq.question}</span>
-                                                    <span className="faq-icon">
-                                                        {activeIndex === index ? "−" : "+"}
-                                                    </span>
-                                                </div>
-                                                {activeIndex === index && (
-                                                    <div className="faq-answer">{faq.answer}</div>
-                                                )}
-                                            </div>
-                                        ))}
-
-                                        <div className="faq-more">
-                                            <button onClick={() => setShowAll(!showAll)}>
-                                                {showAll ? "THU GỌN" : "XEM THÊM"}
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <div
+                                        className="faq-content"
+                                        dangerouslySetInnerHTML={{ __html: product.faq || "<p>Chưa có câu hỏi thường gặp.</p>" }}
+                                    />
                                 )}
-
                             </div>
+
                         </div>
                     </Col>
 
