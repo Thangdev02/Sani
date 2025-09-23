@@ -15,6 +15,7 @@ import ProductsManager from "./pages/Admin/ProductsManager"
 import PostsManager from "./pages/Admin/PostsManager"
 import LoginPage from "./pages/Login/LoginPage"
 import AdminLayout from "./pages/Admin/AdminLayouts"
+import ChatWidget from "./components/ChatWidget/ChatWidget"
 
 function App() {
   // ✅ kiểm tra login qua localStorage
@@ -24,6 +25,8 @@ function App() {
     <LanguageProvider>
       <Router>
         <div className="App" style={{ fontFamily: "Montserrat" }}>
+        <ChatWidget />
+
           <Header />
 
           <Routes>
@@ -40,7 +43,7 @@ function App() {
             {/* Admin routes */}
             <Route
               path="/admin"
-              element={isAuthenticated ? <AdminLayout /> : <Navigate to="/login" />}
+              element={isAuthenticated ? <AdminLayout /> : <Navigate to="/loginsani" />}
             >
               <Route path="products" element={<ProductsManager />} />
               <Route path="posts" element={<PostsManager />} />
