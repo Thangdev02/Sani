@@ -24,7 +24,7 @@ function App() {
   return (
     <LanguageProvider>
       <Router>
-        <div className="App" style={{ fontFamily: "Montserrat" }}>
+        <div className="App" style={{ fontFamily: "Inter" }}>
         <ChatWidget />
 
           <Header />
