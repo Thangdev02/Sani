@@ -116,88 +116,52 @@ const ChatWidget = () => {
               fontSize: "14px",
             }}
           >
-            {messages.map((msg, i) => (
-              <div
-                key={i}
-                style={{
-                  textAlign: msg.sender === "user" ? "right" : "left",
-                  marginBottom: "8px",
-                }}
-              >
-                {/* Hiển thị text */}
-                <span
-                  style={{
-                    display: "inline-block",
-                    padding: "8px 12px",
-                    borderRadius: "16px",
-                    background:
-                      msg.sender === "user" ? "#ea4e2a" : "#f1f0f0",
-                    color: msg.sender === "user" ? "#fff" : "#000",
-                    maxWidth: "85%",
-                    textAlign: "left",
-                  }}
-                >
-                  <ReactMarkdown>{msg.text}</ReactMarkdown>
-                </span>
+           {messages.map((msg, i) => (
+  <div
+    key={i}
+    style={{
+      display: "flex",
+      justifyContent: msg.sender === "user" ? "flex-end" : "flex-start",
+      alignItems: "flex-end",
+      marginBottom: "10px",
+      gap: "6px",
+    }}
+  >
+    {/* Avatar bên trái cho bot */}
+    {msg.sender === "bot" && (
+      <Image
+        src="/images/saniLogo.png" // đổi đường dẫn avatar bot
+        roundedCircle
+        style={{ width: "42px", height: "42px" }}
+      />
+    )}
 
-                {/* Hiển thị danh sách sản phẩm nếu có */}
-                {msg.products && (
-                  <div style={{ marginTop: "8px" }}>
-                    {msg.products.map((product) => (
-                      <Card
-                        key={product.Id}
-                        style={{
-                          marginBottom: "10px",
-                          border: "1px solid #ddd",
-                          borderRadius: "8px",
-                          boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => handleProductClick(product.Id)}
-                      >
-                        <Card.Img
-                          variant="top"
-                          src={product.Image}
-                          style={{
-                            height: "120px",
-                            objectFit: "cover",
-                            borderTopLeftRadius: "8px",
-                            borderTopRightRadius: "8px",
-                          }}
-                        />
-                        <Card.Body>
-                          <Card.Title style={{ fontSize: "16px", fontWeight: "bold" }}>
-                            {product.NameVi}
-                          </Card.Title>
-                          <Card.Text>
-                            <span style={{ color: "#dc3545", fontWeight: "bold" }}>
-                              {product.Price.toLocaleString("vi-VN")} đ
-                            </span>
-                            {product.OldPrice && (
-                              <span
-                                style={{
-                                  marginLeft: "10px",
-                                  textDecoration: "line-through",
-                                  color: "#6c757d",
-                                  fontSize: "14px",
-                                }}
-                              >
-                                {product.OldPrice.toLocaleString("vi-VN")} đ
-                              </span>
-                            )}
-                          </Card.Text>
-                          {product.Discount && (
-                            <Badge bg="success" style={{ fontSize: "12px" }}>
-                              Giảm {product.Discount}%
-                            </Badge>
-                          )}
-                        </Card.Body>
-                      </Card>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+    {/* Bubble chat */}
+    <span
+      style={{
+        display: "inline-block",
+        padding: "8px 12px",
+        borderRadius: "16px",
+        background: msg.sender === "user" ? "#ea4e2a" : "#f1f0f0",
+        color: msg.sender === "user" ? "#fff" : "#000",
+        maxWidth: "75%",
+        textAlign: "left",
+      }}
+    >
+      <ReactMarkdown>{msg.text}</ReactMarkdown>
+    </span>
+
+    {/* Avatar bên phải cho user */}
+    {msg.sender === "user" && (
+      <Image
+        src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" // đổi đường dẫn avatar user
+        roundedCircle
+        style={{ width: "42px", height: "42px" }}
+      />
+    )}
+  </div>
+))}
+
             {loading && <p style={{ color: "#6c757d" }}>Đang trả lời...</p>}
           </div>
 
