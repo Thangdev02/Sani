@@ -1,20 +1,41 @@
 "use client"
+import { useEffect, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Autoplay, EffectCoverflow, EffectFlip, EffectCube } from "swiper/modules"
+import { Navigation, Autoplay, EffectCoverflow } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/effect-coverflow"
 import "./HeroSection.css"
 
-import Slide2 from "../../assets/images/slider_2_img.jpg"
-import Slide3 from "../../assets/images/slider_3_img.jpg"
-import Slide4 from "../../assets/images/slider_4_img.jpg"
+const BASE_URL = "https://ads.eposh.io.vn/"
+
+// ✅ Hàm chuẩn hóa đường dẫn ảnh
+const getFullImageUrl = (url) => {
+  if (!url) return ""
+  if (url.startsWith("http")) return url
+  return BASE_URL + url.replace(/^\/+/, "")
+}
 
 const HeroSection = () => {
+  const [sliders, setSliders] = useState([])
+
+  useEffect(() => {
+    const fetchSliders = async () => {
+      try {
+        const res = await fetch("https://ads.eposh.io.vn/api/v1/settings/sliders")
+        const data = await res.json()
+        setSliders(data?.data || [])
+      } catch (err) {
+        console.error("Load sliders error:", err)
+      }
+    }
+    fetchSliders()
+  }, [])
+
   return (
     <section className="hero-section">
       <Swiper
-        modules={[Navigation, Autoplay, EffectCube]}
+        modules={[Navigation, Autoplay, EffectCoverflow]}
         navigation
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}
@@ -31,15 +52,16 @@ const HeroSection = () => {
         }}
         className="hero-swiper"
       >
-        <SwiperSlide>
-          <img src={Slide2} alt="Slide 2" className="hero-slide-img" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={Slide3} alt="Slide 3" className="hero-slide-img" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={Slide4} alt="Slide 4" className="hero-slide-img" />
-        </SwiperSlide>
+        {sliders.map((s) => (
+          <SwiperSlide key={s.id}>
+            <img
+              src={getFullImageUrl(s.imageUrl)}
+              alt={s.title || "slider"}
+              className="hero-slide-img"
+            />
+            
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   )

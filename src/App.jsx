@@ -10,12 +10,13 @@ import IntroductionPage from "./pages/IntroductionPage/IntroductionPage"
 import ContactPage from "./pages/ContactPage/ContactPage"
 import { LanguageProvider } from "./LanguageContext"
 import "bootstrap/dist/css/bootstrap.min.css"
-import DashboardHome from "./pages/Admin/DashboardHome"
 import ProductsManager from "./pages/Admin/ProductsManager"
 import PostsManager from "./pages/Admin/PostsManager"
 import LoginPage from "./pages/Login/LoginPage"
 import AdminLayout from "./pages/Admin/AdminLayouts"
 import ChatWidget from "./components/ChatWidget/ChatWidget"
+import SettingHomePage from "./pages/Admin/Setting/SettingHomePage"
+import SettingAboutPage from "./pages/Admin/Setting/SettingAboutPage"
 
 function App() {
   // ✅ kiểm tra login qua localStorage
@@ -47,6 +48,8 @@ function App() {
             >
               <Route path="products" element={<ProductsManager />} />
               <Route path="posts" element={<PostsManager />} />
+              <Route path="sthome" element={<SettingHomePage />} />
+              <Route path="stintro" element={<SettingAboutPage />} />
             </Route>
           </Routes>
 

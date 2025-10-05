@@ -7,6 +7,8 @@ import ProductsManager from "./ProductsManager";
 import PostsManager from "./PostsManager";
 import { useAuth } from "../../context/AuthContext";
 import "./AdminLayouts.css";
+import SettingHomePage from "./Setting/SettingHomePage";
+import SettingAboutPage from "./Setting/SettingAboutPage";
 
 export default function AdminLayout() {
   const { logout, user } = useAuth();
@@ -36,8 +38,10 @@ export default function AdminLayout() {
           </div>
           <nav className="nav flex-column p-2">
             <NavLink to="/admin" end className="nav-link1">Dashboard</NavLink>
-            <NavLink to="/admin/products" className="nav-link1">Quản lý sản phẩm</NavLink>
-            <NavLink to="/admin/posts" className="nav-link1">Quản lý bài viết</NavLink>
+            <NavLink to="/admin/products" className="nav-link1">Quản Lý Sản Phẩm</NavLink>
+            <NavLink to="/admin/posts" className="nav-link1">Quản Lý Bài Viết</NavLink>
+            <NavLink to="/admin/sthome" className="nav-link1">Cài Đặt Trang Chủ</NavLink>
+            <NavLink to="/admin/stintro" className="nav-link1">Cài Đặt Giới Thiệu</NavLink>
           </nav>
         </div>
         <div className="sidebar-footer p-3">
@@ -54,6 +58,9 @@ export default function AdminLayout() {
             <Route path="/" element={<DashboardHome />} />
             <Route path="/products" element={<ProductsManager />} />
             <Route path="/posts" element={<PostsManager />} />
+            <Route path="/sthome" element={<SettingHomePage />} />
+            <Route path="/stintro" element={<SettingAboutPage />} />
+
           </Routes>
         </main>
       </div>

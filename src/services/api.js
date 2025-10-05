@@ -30,10 +30,12 @@ export const getProducts = async (pageNumber = 1, pageSize = 10, language = "vi"
       throw error;
     }
   };
+
 export const getProductById = async (id) => {
     const res = await axios.get(`${API_BASE_URL}/products/${id}`)
     return res.data.data
   }
+
 
   export const createProduct = async (payload) => {
     const res = await axios.post(`${API_BASE_URL}/products/create`, payload);
